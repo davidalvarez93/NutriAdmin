@@ -6,7 +6,7 @@ export default () => {
     <div>
       <Footer copyrights="&2018 ArkusNexus" 
   moreLinks={
-    <a className="grey-text text-lighten-4 right" href="#!">More Links</a>
+    <a className="grey-text text-lighten-3 right" href="#!">More Links</a>
   }
   links={
     <ul>
@@ -16,7 +16,7 @@ export default () => {
       <li><a className="grey-text text-lighten-3" href="#!">Provedor</a></li>
     </ul>
   }
-  brand='Journeys' right className='blue darken-4'
+  brand='Journeys' right className='blue'
 >
     <h5 className="white-text">Journeys</h5>
     <p className="grey-text text-lighten-4">Sueña, realiza, disfruta.</p>
