@@ -7,7 +7,7 @@ export default class Welcome extends Component {
       return (
         <div className = "Welcome">
             <header className="Welcome-header">
-                <h1 className="Welcome-title">Welcome to React</h1>
+                <h1 className="Welcome-title"></h1>
             </header>
         </div>
       )
