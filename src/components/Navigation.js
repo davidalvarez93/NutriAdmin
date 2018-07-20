@@ -10,4 +10,13 @@ const Navigation = () =>
     </ul>
   </div>
 
+  const ToWelcome = () =>
+    <div>
+      <ul>
+        <li><Link to={routes.WELCOME}>Log In</Link></li>
+      </ul>
+    </div>
+
+
 export default Navigation;
+export default ToWelcome;
