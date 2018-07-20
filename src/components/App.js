@@ -7,6 +7,7 @@ import {
 import './App.css';
 import Navigation from './Navigation';
 import SignUpPage from './SignUp';
+//import Welcome from './';
 import SignInPage from './SignIn';
 
 const App = () =>

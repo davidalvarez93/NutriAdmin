@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Row, Col, Input, Icon, Button } from 'react-materialize'
-
+import { Row, Col, Input, Icon, Button } from 'react-materialize';
+import Navigation from './Navigation';
+import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
     render() {
