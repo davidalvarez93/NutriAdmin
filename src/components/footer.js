@@ -15,7 +15,7 @@ export default () => {
   brand='Journeys' right className='blue'
 >
     <h5 className="white-text">Journeys</h5>
-    <p className="grey-text text-lighten-4">Donde quieras, Cuando quieras, Como quieras.</p>
+    <p className="grey-text text-lighten-4">La vida apesta, viaja lejos de el, o ella, no se, no definimos genero</p>
 </Footer>;
     </div>
   )
