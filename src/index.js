@@ -1,18 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import Nav from './components/navbar';
-import registerServiceWorker from './registerServiceWorker';
-import Login from './components/loginforms';
-import Footer from './components/footer';
-
-ReactDOM.render(<Nav />, document.getElementById('nav'));
-ReactDOM.render(<Login />, document.getElementById('lg'));
-ReactDOM.render(<Footer/>, document.getElementById('ftr'));
-registerServiceWorker();
-
-
-
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -29,7 +14,7 @@ app.use(morgan('dev'));
 app.use(express.json());//cada vez que llega un dato verifica que sea un json 
 
 //routes
-app.use('/api/airports',require('./routes/journeys.routes'));
+app.use('/api/journeys',require('./routes/journeys.routes'));
 
 
 //static files
