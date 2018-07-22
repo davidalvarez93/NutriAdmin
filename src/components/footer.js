@@ -4,7 +4,7 @@ import {Footer} from 'react-materialize'
 export default () => {
   return (
     <div>
-      <Footer copyrights="©2018 Journeys.com"
+<Footer copyrights="©2018 Journeys.com"
   links={
     <ul>
       <li><a className="grey-text text-lighten-3" href="#!">Avisos</a></li>
@@ -12,10 +12,7 @@ export default () => {
       <li><a className="grey-text text-lighten-3" href="#!">Terminos y Condiciones</a></li>
     </ul>
   }
-  brand='Journeys' right className='blue'
->
-    <h5 className="white-text">Journeys</h5>
-    <p className="grey-text text-lighten-4"> Disfruta sin limites  .</p>
+  >
 </Footer>;
     </div>
   )
