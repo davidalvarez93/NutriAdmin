@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
-import { table } from 'react-materialize'
+import { Row, Col, Input, Icon, Button } from 'react-materialize';
+import Navigation from './Navigation';
+import { Link } from 'react-router-dom';
 
-export default class Welcome extends Component {
+export default class WelcomeHome extends Component {
+
     render() {
-      return (
-        <div className = "Welcome">
-            <header className="Welcome-header">
-                <img src={logo} className="Welcome-logo" alt="logo" />
-                <h1 className="Welcome-title">Welcome to React</h1>
-            </header>
-        </div>
-      )
-    }
-}
+        return (
+            <div>
+                  <Row>
+                    <Col m={8} l={4} className='push-m2 push-l4'>
+                        <h1 className='center'>Journeys </h1>
+                        <img src={require('../images/logo.svg')} alt="Test" />
+                        </Col>
+                </Row>
 
-export default Welcome;
+            </div>
+        );
+    }
+};
+
