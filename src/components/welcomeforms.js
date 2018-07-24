@@ -21,9 +21,13 @@ export default class Welcome extends Component {
                   <Row>
                     <Col m={8} l={4} className='push-m2 push-l4'>
                         <h1 className='center'>Journeys </h1>
-                        <img src={require('../images/logo.svg')} alt="Test" />
-                        </Col>
-                </Row>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col  s={12} m={12} className='center'>
+                      <img src={require('../images/grafica2.jpg')} width="800" height="500" />
+                    </Col>
+                  </Row>
                 <Footer copyrights="Journeys ©2018 ArkusNexus" 
     links={
       <ul>
