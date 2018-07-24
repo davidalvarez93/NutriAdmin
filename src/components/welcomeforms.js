@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Input, Icon, Button, Footer } from 'react-materialize';
+import { Row, Col, Input, Icon, Button, Footer, Navbar, NavItem, Dropdown } from 'react-materialize';
 import Navigation from './Navigation';
 import { Link, NavLink } from 'react-router-dom';
 import ReactDOM from 'react-dom';
@@ -17,7 +17,17 @@ export default class Welcome extends Component {
 
         return (
             <div>
+                <Navbar brand='Journeys' left className='blue'>
+                    <Dropdown trigger={
+                        <Button floating waves='light' className='blue'><i class="material-icons">dehaze</i></Button>
+                    }>
+                        <NavItem>Aeropuerto</NavItem>
+                        <NavItem>Vuelos</NavItem>
+                        <NavItem divider />
+                        <NavItem>Cerrar Sesion</NavItem>
+                    </Dropdown>
 
+                </Navbar>
                   <Row>
                     <Col m={8} l={4} className='push-m2 push-l4'>
                         <h1 className='center'>Journeys </h1>

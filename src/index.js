@@ -11,7 +11,7 @@ import App from './components/App';
 
 //ReactDOM.render(<Welcome/>, document.getElementById('wel'));
 
-ReactDOM.render(<Nav />, document.getElementById('nav'));
+//ReactDOM.render(<Nav />, document.getElementById('nav'));
 ReactDOM.render(<App />, document.getElementById('app'));
 //ReactDOM.render(<Login />, document.getElementById('lg'));
 //ReactDOM.render(<Footer/>, document.getElementById('ftr'));
