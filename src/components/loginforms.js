@@ -51,16 +51,7 @@ export default class Login extends Component {
                         <Input type="password" label="password" s={12} validate><Icon>lock</Icon></Input>
                         <Row>
                         <Col  s={12} m={12} className='center'>
-<<<<<<< HEAD
                         <Button className='waves-effect waves-light btn blue'>Login </Button>
-=======
-
-                        <NavLink to="/welcomeforms">
-                        <Button onClick={this.unmountChild.bind(this)}
-                        className='waves-effect waves-light btn blue'>Login</Button>
-                        </NavLink>
-    
->>>>>>> 521074d02f9f9e1124265029c430e5569b6f0730
                         </Col>
                         
                         </Row>
@@ -69,7 +60,7 @@ export default class Login extends Component {
                 </Row>   
  <Footer copyrights="Journeys ©2018 ArkusNexus" 
     links={
-      <ul>
+      <ul align>
         <li><a className="grey-text text-lighten-3" href="#!">Avisos</a></li>
         <li><a className="grey-text text-lighten-3" href="#!">Privacidad</a></li>
         <li><a className="grey-text text-lighten-3" href="#!">Terminos y Condiciones</a></li>
