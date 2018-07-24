@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Row, Col, Input, Icon, Button } from 'react-materialize';
+import { Row, Col, Input, Icon, Button, Footer } from 'react-materialize';
 import Navigation from './Navigation';
 import welcomeforms from './welcomeforms';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import {
-    BrowserRouter as Router,
+    BrowserRouter,
     Route,
   } from 'react-router-dom';
 
@@ -43,18 +43,7 @@ export default class Login extends Component {
             return(<div/>)
         }
         return (
-
-          
-            
-            <Router>
-            <div>
-            
-            
-              <Route exact path="/welcomeforms"
-              component={welcomeforms}/>
-              
-
-                           
+            <div>                   
                 <Row>
                     <Col m={8} l={4} className='push-m2 push-l4'>
                         <h1 className='center'>Journeys </h1>
@@ -63,23 +52,33 @@ export default class Login extends Component {
                         <Row>
                         <Col  s={12} m={12} className='center'>
 
-                        <Link to="/welcomeforms">
+                        <NavLink to="/welcomeforms">
                         <Button onClick={this.unmountChild.bind(this)}
                         className='waves-effect waves-light btn blue'>Login</Button>
-                        </Link>
+                        </NavLink>
     
                         </Col>
                         
                         </Row>
 
                     </Col>
-                </Row>
-
-                             
+                </Row>   
+ <Footer copyrights="Journeys ©2018 ArkusNexus" 
+    links={
+      <ul>
+        <li><a className="grey-text text-lighten-3" href="#!">Avisos</a></li>
+        <li><a className="grey-text text-lighten-3" href="#!">Privacidad</a></li>
+        <li><a className="grey-text text-lighten-3" href="#!">Terminos y Condiciones</a></li>
+      </ul>
+    }
+    brand='Journeys' right className='blue'
+  >
+  </Footer>;        
             </div>
-          </Router>
             
         );
     }
 
 };
+
+
