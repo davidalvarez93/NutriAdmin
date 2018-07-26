@@ -5,15 +5,14 @@ import { Route, Switch } from 'react-router-dom';
 //componentes
 import App from './App';
 import Airports from './components/MisComponentes/Airports';
-import ADos from './components/MisComponentes/ADos';
-import ATres from './components/MisComponentes/ATres';
+import Page404 from './components/MisComponentes/Page404';
 
 const AppRoutes = () =>
     <App>
         <Switch>
             <Route exact path="/Airports" component={Airports}/>
-            <Route exact path="/PageDos" component={ADos}/>
-            <Route exact path="/PageTres" component={ATres}/>
+            <Route exact path="/Page404" component={Page404}/>
+            <Route exact path="/Page404" component={Page404}/>
         </Switch>
     </App>;
 
