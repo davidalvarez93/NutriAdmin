@@ -12,13 +12,11 @@ class Airport extends Component{
             Aeropuertos:[]
         };
     }
-    
+
     componentDidMount(){
         this.fetchAirports();
     }
     
-
-
     fetchAirports(){
         fetch('http://localhost:3001/api/journeys')  
             .then(res=>res.json())
@@ -74,7 +72,7 @@ class Airport extends Component{
 
                 <div className="row">
                     <div className="col s12 ">
-                        <table>
+                        <table className=" highlight">
                             <thead>
                                 <tr>
                                     <th>Nombre de aeropuerto</th>
@@ -85,7 +83,7 @@ class Airport extends Component{
                                     <th>Aloha</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 {
                                     this.state.Aeropuertos.map(Aeropuertos=>{
                                         return(
