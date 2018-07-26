@@ -107,21 +107,6 @@ class Airport extends Component{
                                 }
                             </tbody>
                         </table>
-
-
-
-
-                        <div className="center-align">
-                            <ul className="pagination">
-                                <li className="disabled"><a href="#!"><i className="material-icons">chevron_left</i></a></li>
-                                <li className="active"><a href="#!">1</a></li>
-                                <li className="waves-effect"><a href="#!">2</a></li>
-                                <li className="waves-effect"><a href="#!">3</a></li>
-                                <li className="waves-effect"><a href="#!">4</a></li>
-                                <li className="waves-effect"><a href="#!">5</a></li>
-                                <li className="waves-effect"><a href="#!"><i className="material-icons">chevron_right</i></a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -130,23 +115,3 @@ class Airport extends Component{
 }
 
 export default Airport;
-
-
-/*
-    <div class="nav-wrapper light-blue darken-3">
-      <form>
-        <div class="input-field">
-          <input id="search" type="search" required/>
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-      </form>
-    </div>
-*/
-/*
-                        <Modal header='Modal Header' 
-                            trigger={
-                            <a className="waves-effect waves-light light-blue darken-3 btn-large">Add Airport</a>
-                            }>
-                        </Modal>  
-*/

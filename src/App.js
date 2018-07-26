@@ -5,7 +5,7 @@ import NavbarWhenLogged from './components/MisComponentes/NavbarWhenLogged';
 import PageFooter from './components/MisComponentes/Footer';
 import Content from './components/MisComponentes/Content';
 
-import './App.css';
+
 
 
 class App extends Component {
