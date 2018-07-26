@@ -1,0 +1,18 @@
+.MiNavigation {     
+    height: 40px;
+  }
+  
+.MiFooter {
+  height: 40px;
+}
+/*65px*/
+
+.MiHeaderWhenLogged {
+  height: 50px;
+}
+
+.MiInputField{
+  height: 20px;
+}
+
+.MiModal { width: 50%  ; height: 70%  ; }

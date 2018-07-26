@@ -1,28 +1,22 @@
-const express = require('express');
-const morgan = require('morgan');
-const path = require('path');
-const { mongoose } = require('./database');
+
+//Dependencias
+import React from 'react';
+import {render} from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+//Routes
+import AppRoutes from './routes';
+import Test from './components/MisComponentes/AddAirport'
 
 
-const app = express();
+//Assets
+import './index.css'; 
 
-//settings
-app.set('port',process.env.PORT || 3000);
-
-//middlewares
-app.use(morgan('dev'));
-app.use(express.json());//cada vez que llega un dato verifica que sea un json 
-
-//routes
-app.use('/api/journeys',require('./routes/journeys.routes'));
+render(
+    <Router >
+    <AppRoutes />
+    </Router>, 
+    document.getElementById('root'),
+);
 
 
-//static files
-app.use(express.static(path.join(__dirname,'public')));
-
-//starting server
-
-
-app.listen(app.get('port'),()=>{
-    console.log(`Server on port ${app.get('port')}`);
-});
