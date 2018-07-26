@@ -77,6 +77,9 @@ export default class Login extends Component {
       validateForm() {
         this.setState({formValid: this.state.emailValid && this.state.passwordValid});
       }
+      errorClass(error) {
+        return(error.length === 0 ? '' : 'has-error');
+     }
       
 
     render(){
@@ -91,8 +94,9 @@ export default class Login extends Component {
                 <Row>
                     <Col m={8} l={4} className='push-m2 push-l4'>
                         <h1 className='center'>Journeys </h1>
-                        <Row className='Form-Login'>
-                            <Input type="email" label="Email"  s={12} validate 
+                       
+                        <Row className={'Form-Login${this.errorClass(this.state.formErrors.email)}'}>  
+                           <Input type="email" label="Email"  s={12} validate 
                             name="email"     
                             value={this.state.email}
                             onChange={(event) => this.handleUserInput(event)}>
