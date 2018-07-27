@@ -9,25 +9,25 @@ class Airport extends Component{
     constructor(){
         super();
         this.state={
-            Aeropuertos:[]
+            Vuelos:[]
         };
     }
 
     componentDidMount(){
-        this.fetchAirports();
+        this.fetchFlights();
     }
     
-    fetchAirports(){
-        fetch('http://localhost:3001/api/journeys')  
+    fetchFlights(){
+        fetch('http://localhost:3001/api/journeys/Flgts/')  
             .then(res=>res.json())
             .then(data=>{
-                this.setState({Aeropuertos:data});
+                this.setState({Vuelos:data});
             });
         }
 
-    DeleteAirport(id){
+    DeleteFlights(id){
         if(window.confirm('Estas seguro de eliminar el aeropuerto')){
-            fetch(`http://localhost:3001/api/journeys/${id}`,{
+            fetch(`http://localhost:3001/api/journeys/Flgts/${id}`,{
                 method:'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -37,7 +37,7 @@ class Airport extends Component{
             .then(res=>res.json())
             .then(data=>{
                 window.Materialize.toast("Aeropuerto Eliminado");
-                this.fetchAirports();
+                this.fetchFlights();
             });
         }
     }
@@ -64,7 +64,7 @@ class Airport extends Component{
                             }>
 
                             <AddAirportView/> 
-                            {this.fetchAirports()}
+                            {this.fetchFlights()}
                         </Modal>
                         </div>
                     </div>
@@ -90,22 +90,21 @@ class Airport extends Component{
                             </thead>
                             <tbody >
                                 {
-                                    this.state.Aeropuertos.map(Aeropuertos=>{
+                                    this.state.Vuelos.map(Vuelos=>{
                                         return(
-                                            <tr key={Aeropuertos._id}>
-                                                <td>{Aeropuertos.Ap_Name}</td>
-                                                <td>{Aeropuertos.Ap_Country}</td>
-                                                <td>{Aeropuertos.Ap_State}</td>
-                                                <td>{Aeropuertos.Ap_City}</td>
-                                                <td>{Aeropuertos.Ap_Address}</td>
+                                            <tr key={Vuelos._id}>
+                                                <td>{Vuelos.Origen}</td>
+                                                <td>{Vuelos.Fecha_De_Salida}</td>
+                                                <td>{Vuelos.Hora_De_Salida}</td>
+                                                <td>{Vuelos.Destino}</td>
+                                                <td>{Vuelos.Fecha_De_Llegada}</td>
+                                                <td>{Vuelos.Hora_De_Llegada}</td>
+                                                <td>{Vuelos.Capacidad}</td>
+                                                <td>{Vuelos.Precio}</td>
                                                 <td>
                                                     <button className="waves-effect waves-light light-blue darken-3 btn small" style={{margin:"6px"}} 
-                                                    onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
+                                                     onClick={()=>this.DeleteFlights(Vuelos._id)}>
                                                         <i className="material-icons ">delete</i>
-                                                    </button>
-                                                    <button className="waves-effect waves-light light-blue darken-3 btn" style={{margin:"6px"}} 
-                                                    onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
-                                                        <i className="material-icons ">edit</i>
                                                     </button>
                                                 </td>
                                             </tr>

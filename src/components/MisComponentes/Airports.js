@@ -18,7 +18,7 @@ class Airport extends Component{
     }
     
     fetchAirports(){
-        fetch('http://localhost:3001/api/journeys/Apts')  
+        fetch('http://localhost:3001/api/journeys/Apts/')  
             .then(res=>res.json())
             .then(data=>{
                 this.setState({Aeropuertos:data});
