@@ -10,4 +10,5 @@ let AirportSchema = new Schema({
     Ap_Address:{type:String, required:true}
 });
 
+
 module.exports=mongoose.model('Airports',AirportSchema);//collection airports

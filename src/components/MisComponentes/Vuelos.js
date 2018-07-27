@@ -1,7 +1,7 @@
 
 import React, {Component } from 'react';
 import { Toast, Modal, Button } from 'react-materialize';
-import AddAirportView from './AddAirport';
+import AddAirportView from './AddVuelos';
 
 import './estilos.css'
 
@@ -18,7 +18,7 @@ class Airport extends Component{
     }
     
     fetchAirports(){
-        fetch('http://localhost:3001/api/journeys/Apts')  
+        fetch('http://localhost:3001/api/journeys')  
             .then(res=>res.json())
             .then(data=>{
                 this.setState({Aeropuertos:data});
@@ -27,7 +27,7 @@ class Airport extends Component{
 
     DeleteAirport(id){
         if(window.confirm('Estas seguro de eliminar el aeropuerto')){
-            fetch(`http://localhost:3001/api/journeys/Apts/${id}`,{
+            fetch(`http://localhost:3001/api/journeys/${id}`,{
                 method:'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -46,6 +46,7 @@ class Airport extends Component{
     render(){
         return(
             <div className="container">
+            <p>VUELOS</p>
                 <div className="section">
                     <div className="row valign-wrapper">
                         <div className="col s6 input-field light-blue darken-3 ">
@@ -76,11 +77,14 @@ class Airport extends Component{
                         <table className=" highlight">
                             <thead>
                                 <tr>
-                                    <th>Nombre de aeropuerto</th>
-                                    <th>Pais</th>
-                                    <th>Estado</th>
-                                    <th>Ciudad</th>
-                                    <th>Dirección</th>
+                                    <th>Origen</th>
+                                    <th>Fecha De Salida</th>
+                                    <th>Hora De Salida</th>
+                                    <th>Destino</th>
+                                    <th>Fecha De Salida</th>
+                                    <th>Hora De Salida</th>
+                                    <th>Capacidad</th>
+                                    <th>Precio</th>
                                     <th></th>
                                 </tr>
                             </thead>
