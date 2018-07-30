@@ -1,8 +1,8 @@
 import React, {Component}from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Row, Col, Input, Icon, Button, Footer } from 'react-materialize';
+import { Row, Col, Input, Icon, Button, Footer, Navbar, NavItem, Dropdown } from 'react-materialize';
 
-import * as routes from '../constants/routes';
+//import * as routes from '../constants/routes';
 
 class Navigation extends Component{
   state={
@@ -38,11 +38,12 @@ render(){
     }
     return(
       <div>
+                    
  <Row>
       <Col m={8} l={4} className='push-m2 push-l4'>
         <Row>
             <Col  s={12} m={12} className='center'>
-            <img src={require('../images/playne.jpg')} width="350" height="350" />
+            <img src={require('../../images/playne.jpg')} width="350" height="350" />
             </Col>
         </Row>
         <Row>
@@ -55,17 +56,6 @@ render(){
         </Row>
       </Col>
 </Row>  
-<Footer copyrights="Journeys ©2018 ArkusNexus" 
-    links={
-      <ul>
-        <li><a className="grey-text text-lighten-3" href="#!">Avisos</a></li>
-        <li><a className="grey-text text-lighten-3" href="#!">Privacidad</a></li>
-        <li><a className="grey-text text-lighten-3" href="#!">Terminos y Condiciones</a></li>
-      </ul>
-    }
-    brand='Journeys' right className='blue'
-  >
-  </Footer>;        
     </div>
     );
   }
