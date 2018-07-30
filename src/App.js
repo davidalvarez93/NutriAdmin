@@ -1,21 +1,45 @@
+import propTypes from 'prop-types';
+
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Link, NavLink } from 'react-router-dom';
+import { Row, Col, Input, Icon, Button, Footer, Navbar, NavItem, Dropdown } from 'react-materialize';
+import NavbarWhenLogged from './components/MisComponentes/NavbarWhenLogged';
+import PageFooter from './components/MisComponentes/Footer';
+import Content from './components/MisComponentes/Content';
+import Navigation from './components/MisComponentes/Navigation';
+import loginforms from "./components/MisComponentes/loginforms";
+import { BrowserRouter, Router, Route, Switch } from 'react-router-dom';
+
+
+
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+
+
+  static propTypes ={
+    children: propTypes.object.isRequired
+  };
+
+
+    render() {
+      const { children } = this.props;
+        return (
+          [
+            <header>
+              <NavbarWhenLogged/>
+            </header>,
+            <main>
+              <Content  body={children} />
+            </main>,
+            <footer>
+              <PageFooter/>
+            </footer>
+          ]
+        )
+    }
 }
 
+
 export default App;
+
