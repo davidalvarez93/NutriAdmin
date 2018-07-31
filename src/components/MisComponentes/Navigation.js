@@ -1,6 +1,6 @@
 import React, {Component}from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Row, Col, Input, Icon, Button, Footer, Navbar, NavItem, Dropdown } from 'react-materialize';
+import { NavLink } from 'react-router-dom';
+import { Row, Col, Button, } from 'react-materialize';
 
 //import * as routes from '../constants/routes';
 
@@ -33,7 +33,7 @@ componentWillUnmount() {
 
 render(){
    console.log('render');
-    if(this.state.name=='robert'){
+    if(this.state.name==='robert'){
         return(<div/>)
     }
     return(

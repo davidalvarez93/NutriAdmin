@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-import { Row, Col, Input, Icon, Button, Footer, Navbar, NavItem, Dropdown } from 'react-materialize';
-import Navigation from './Navigation';
-import welcomeforms from './welcomeforms';
-import { Link, NavLink } from 'react-router-dom';
-import ReactDOM from 'react-dom';
-import {
-    BrowserRouter,
-    Route,
-  } from 'react-router-dom';
+import { Row, Col, Input, Icon, Button } from 'react-materialize';
+import { NavLink } from 'react-router-dom';
+
+
 
 
 export default class Login extends Component {
@@ -84,7 +79,7 @@ export default class Login extends Component {
 
     render(){
        console.log('render');
-        if(this.state.name=='robert'){
+        if(this.state.name==='robert'){
             return(<div/>)
         }
         return (

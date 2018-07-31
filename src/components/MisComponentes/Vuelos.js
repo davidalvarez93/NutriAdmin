@@ -1,6 +1,6 @@
 
 import React, {Component } from 'react';
-import { Toast, Modal, Button } from 'react-materialize';
+import { Modal, Button } from 'react-materialize';
 import AddAirportView from './AddVuelos';
 
 import './estilos.css'
