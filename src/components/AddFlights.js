@@ -1,7 +1,4 @@
 import React, {Component } from 'react';
-import { Toast, Modal, Button, Col, Row } from 'react-materialize';
-import AddFlightsView from './AddFlights';
-
 import './estilos.css'
 
 class Flight extends Component{
