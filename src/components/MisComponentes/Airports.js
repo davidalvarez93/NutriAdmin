@@ -2,19 +2,27 @@
 import React, {Component } from 'react';
 import { Modal, Button } from 'react-materialize';
 import AddAirportView from './AddAirport';
+import EditAirportView from './EditAirports'
 
 import './estilos.css'
 
 class Airport extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
+            Ap_Name:'', 
+            Ap_Country:'',
+            Ap_State:'',
+            Ap_City:'',
+            Ap_Address:'',
+            _id:'',
             Aeropuertos:[]
         };
     }
 
     componentDidMount(){
         this.fetchAirports();
+       
     }
     
     fetchAirports(){
@@ -41,8 +49,6 @@ class Airport extends Component{
             });
         }
     }
-
-
     render(){
         return(
             <div className="container">
@@ -61,16 +67,12 @@ class Airport extends Component{
                                     Agregar Aeropuerto
                                 </Button>
                             }>
-
                             <AddAirportView/> 
                             {this.fetchAirports()}
                         </Modal>
                         </div>
                     </div>
                 </div>
-
-
-
                 <div className="row">
                     <div className="col s12 ">
                         <table className=" highlight">
@@ -95,14 +97,20 @@ class Airport extends Component{
                                                 <td>{Aeropuertos.Ap_City}</td>
                                                 <td>{Aeropuertos.Ap_Address}</td>
                                                 <td>
-                                                    <button className="waves-effect waves-light light-blue darken-3 btn small" style={{margin:"6px"}} 
+                                                    <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}} 
                                                     onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
                                                         <i className="material-icons ">delete</i>
                                                     </button>
-                                                    <button className="waves-effect waves-light light-blue darken-3 btn" style={{margin:"6px"}} 
-                                                    onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
-                                                        <i className="material-icons ">edit</i>
-                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <Modal header='Editar Aeropuerto' className="center"
+                                                        trigger={
+                                                            <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}}>
+                                                                <i className="material-icons ">edit</i>
+                                                            </button>
+                                                        }>
+                                                    <EditAirportView IdFromParent={Aeropuertos._id}/>
+                                                    </Modal>
                                                 </td>
                                             </tr>
                                         )

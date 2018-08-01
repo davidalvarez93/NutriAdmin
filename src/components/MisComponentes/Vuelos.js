@@ -2,17 +2,18 @@
 import React, {Component } from 'react';
 import { Modal, Button } from 'react-materialize';
 import AddAirportView from './AddVuelos';
+import EditFlights from './EditFlights';
 
 import './estilos.css'
 
 class Airport extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             Vuelos:[]
         };
     }
-
+    
     componentDidMount(){
         this.fetchFlights();
     }
@@ -46,7 +47,6 @@ class Airport extends Component{
     render(){
         return(
             <div className="container">
-            <p>VUELOS</p>
                 <div className="section">
                     <div className="row valign-wrapper">
                         <div className="col s6 input-field light-blue darken-3 ">
@@ -62,16 +62,12 @@ class Airport extends Component{
                                     Agregar Aeropuerto
                                 </Button>
                             }>
-
                             <AddAirportView/> 
                             {this.fetchFlights()}
                         </Modal>
                         </div>
                     </div>
                 </div>
-
-
-
                 <div className="row">
                     <div className="col s12 ">
                         <table className=" highlight">
@@ -106,6 +102,16 @@ class Airport extends Component{
                                                      onClick={()=>this.DeleteFlights(Vuelos._id)}>
                                                         <i className="material-icons ">delete</i>
                                                     </button>
+                                                </td>
+                                                <td>
+                                                    <Modal header='Editar Vuelo'  className="center" 
+                                                        trigger={
+                                                            <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}}>
+                                                                <i className="material-icons ">edit</i>
+                                                            </button>
+                                                        }>
+                                                    <EditFlights IdFromParent={Vuelos._id}/>
+                                                    </Modal>
                                                 </td>
                                             </tr>
                                         )

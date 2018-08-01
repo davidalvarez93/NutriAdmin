@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 //Routes
 import AppRoutes from './routes';
-import Test from './components/MisComponentes/Test'
+//import Test from './components/MisComponentes/Test'
 //import App from './components/App';
 
 //Assets
