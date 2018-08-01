@@ -1,19 +1,31 @@
-import React from 'react'
-import {Footer} from 'react-materialize'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
-export default () => {
-  return (
-    <div color = "blue">
-<Footer copyrights="©2018 Journeys.com" left className='blue'
-  moreLinks={
-    <ul align="left">
-      <li><a className="grey-text text-lighten-3" href="#!">Avisos</a></li>
-      <li><a className="grey-text text-lighten-3" href="#!">Privacidad</a></li>
-      <li><a className="grey-text text-lighten-3" href="#!">Terminos y Condiciones</a></li>
-    </ul>
-  }
-  >
-</Footer>;
-    </div>
-  )
+import './estilos.css'
+
+class PageFooter extends Component{
+    render(){
+        return(
+        <nav className=" light-blue darken-3 " >
+          <div className="  nav-wrapper"> 
+
+            <ul  className=" right ">
+            <li><Link  to="/Page404"><p className="MiFooter valign-wrapper">Aviso</p></Link></li>
+            <li><Link  to="/Page404"><p className="MiFooter valign-wrapper">Privacidad</p></Link></li>
+            <li><Link  to="/Page404"><p className="MiFooter valign-wrapper">Terminos y condiciones</p></Link></li>
+            </ul>
+
+           
+            <ul  className="valign-wrapper  ">
+            <li><Link  to="/"><p className="MiFooter valign-wrapper">Journeys</p></Link></li>
+            </ul>
+           
+
+          </div>
+        </nav>
+        )
+    }
 }
+
+export default PageFooter;
+

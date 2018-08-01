@@ -1,7 +1,5 @@
 
 import React, {Component } from 'react';
-import { Toast, Modal, Button, Col, Row } from 'react-materialize';
-import AddAirportView from './AddAirport';
 
 import './estilos.css'
 
@@ -87,7 +85,7 @@ class Airport extends Component{
                                         <div className="row"></div>
                                         <div className="row">
                                             <div className="col s1 push-s9">
-                                                <button type="submit" className="btn light-blue darken-3">Add</button>
+                                                <button type="submit" className="btn light-blue darken-3">Agregar</button>
                                             </div>
                                         </div>
                                     </form>
