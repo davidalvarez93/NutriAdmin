@@ -2,11 +2,9 @@ import propTypes from 'prop-types';
 
 import React, { Component } from 'react';
 
-import NavbarWhenLogged from './components/MisComponentes/NavbarWhenLogged';
-import PageFooter from './components/MisComponentes/Footer';
-import Content from './components/MisComponentes/Content';
-
-
+import NavbarWhenLogged from './components/NavbarWhenLogged';
+import PageFooter from './components/Footer';
+import Content from './components/Content';
 
 
 class App extends Component {

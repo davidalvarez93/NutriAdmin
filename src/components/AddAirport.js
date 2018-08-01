@@ -85,7 +85,7 @@ class Airport extends Component{
                                         <div className="row"></div>
                                         <div className="row">
                                             <div className="col s1 push-s9">
-                                                <button type="submit" className="btn light-blue darken-3">Add</button>
+                                                <button type="submit" className="btn light-blue darken-3">Agregar</button>
                                             </div>
                                         </div>
                                     </form>

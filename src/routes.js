@@ -1,24 +1,22 @@
-//dependencias
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-//componentes
 import App from './App';
-import Airports from './components/MisComponentes/Airports';
-import Vuelos from './components/MisComponentes/Vuelos'
-import Page404 from './components/MisComponentes/Page404';
+import Airports from './components/Airports';
+import Flights from './components/Flights';
+import Page404 from './components/Page404';
 
-import loginforms from './components/MisComponentes/loginforms';
-import welcomeforms from './components/MisComponentes/welcomeforms';
-import Footer from './components/MisComponentes/Footer';
-import Navigation from './components/MisComponentes/Navigation';
+import loginforms from './components/loginforms';
+import welcomeforms from './components/welcomeforms';
+import Footer from './components/Footer';
+import Navigation from './components/Navigation';
 
 
 const AppRoutes = () =>
     <App>
         <Switch>
             <Route exact path="/Airports" component={Airports}/>
-            <Route exact path="/Vuelos" component={Vuelos}/>
+            <Route exact path="/Vuelos" component={Flights}/>
             <Route exact path="/Page404" component={Page404}/>
 
             <Route exact path="/Footer" component={Footer}/>

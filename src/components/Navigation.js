@@ -1,8 +1,6 @@
 import React, {Component}from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Row, Col, Input, Icon, Button, Footer } from 'react-materialize';
-
-import * as routes from '../constants/routes';
+import { NavLink } from 'react-router-dom';
+import { Row, Col, Button, } from 'react-materialize';
 
 class Navigation extends Component{
   state={
@@ -33,11 +31,12 @@ componentWillUnmount() {
 
 render(){
    console.log('render');
-    if(this.state.name=='robert'){
+    if(this.state.name==='robert'){
         return(<div/>)
     }
     return(
       <div>
+                    
  <Row>
       <Col m={8} l={4} className='push-m2 push-l4'>
         <Row>
@@ -55,41 +54,9 @@ render(){
         </Row>
       </Col>
 </Row>  
-<Footer copyrights="Journeys ©2018 ArkusNexus" 
-    links={
-      <ul>
-        <li><a className="grey-text text-lighten-3" href="#!">Avisos</a></li>
-        <li><a className="grey-text text-lighten-3" href="#!">Privacidad</a></li>
-        <li><a className="grey-text text-lighten-3" href="#!">Terminos y Condiciones</a></li>
-      </ul>
-    }
-    brand='Journeys' right className='blue'
-  >
-  </Footer>;        
     </div>
     );
   }
 };
 
 export default Navigation;
-
-/*
-const Navigation = () =>
-  <div>
-    <ul>
-      <li><Link to={routes.LOG_IN}>Sign In</Link></li>
-    </ul>
-  </div>*/
-/*
-  export default class Navigation extends Component {
-  render() {
-    return (
-      <div>
-      <ul>
-        <li><Link to={routes.LOG_IN}></Link></li>
-      </ul>
-    </div>
-    );
-  }
- } 
-*/
