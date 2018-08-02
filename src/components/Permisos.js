@@ -69,7 +69,7 @@ class Permisos extends Component{
                                 </Button>
                             }>
                             <AddUserView/> 
-                            //{this.fetchAirports()}
+                            {this.fetchAirports()}
                         </Modal>
                         </div>
                     </div>
