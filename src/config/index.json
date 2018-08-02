@@ -1,4 +1,0 @@
-{
-    "dbUri": "mongodb://localhost/journeys",
-    "jwtSecret": "a secret phrase!!"
-  }
