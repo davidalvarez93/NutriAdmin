@@ -117,7 +117,7 @@ class Airport extends Component{
                                                         fixedFooter 
                                                         actions={
                                                             <div>
-                                                                <Button flat style={{padding:" 10px 15px"}} disabled/>
+                                                                <Button flat style={{padding:" 10px 22px"}} disabled/>
                                                                 <Button modal="close" className="btn light-blue darken-3" >Cerrar  </Button>
                                                             </div>
                                                         }
