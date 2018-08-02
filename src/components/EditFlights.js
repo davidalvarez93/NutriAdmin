@@ -108,10 +108,12 @@ class Airport extends Component{
                     </div>
                 </div>
                 <div className="row"></div>
-                <div className="row center">
-                    <button onClick={()=>{this.GuardarCambios()}}  className="btn light-blue darken-4 large">
-                        Guardar Cambios
-                    </button>
+                <div className="row">
+                    <div className="col s1 push-s9">
+                        <button onClick={()=>{this.GuardarCambios()}}  className="btn light-blue darken-3 large">
+                            Guardar
+                        </button>
+                    </div>
                 </div>
         </div>
         )

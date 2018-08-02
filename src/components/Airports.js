@@ -1,6 +1,6 @@
 
 import React, {Component } from 'react';
-import { Modal, Button } from 'react-materialize';
+import { Modal, Button, Icon } from 'react-materialize';
 import AddAirportView from './AddAirport';
 import EditAirportView from './EditAirports'
 
@@ -49,6 +49,9 @@ class Airport extends Component{
             });
         }
     }
+    nolose(){
+        console.log("si funciona");
+    }
     render(){
         return(
             <div className="container">
@@ -62,13 +65,22 @@ class Airport extends Component{
                         <div className="col s3 "><a className="waves-effect waves-light light-blue darken-3 btn-large">Search</a></div>
                         <div className="col s3 push-s1 ">
                         <Modal header="Agregar nuevo aeropuerto" className="MiModal center"
+                            fixedFooter
+                            actions={
+                                <div>
+                                    <Button flat style={{padding:" 10px 15px"}} disabled/>
+                                    <Button modal="close" className="btn light-blue darken-3">Cerrar  </Button>
+                                </div>
+                              }
+                              modalOptions={{dismissible:false,
+                                            complete:()=>this.fetchAirports(),
+                                            }}
                             trigger={
                                 <Button className="waves-effect waves-light light-blue darken-3">
                                     Agregar Aeropuerto
                                 </Button>
                             }>
-                            <AddAirportView/> 
-                            {this.fetchAirports()}
+                            <AddAirportView/>
                         </Modal>
                         </div>
                     </div>
@@ -103,7 +115,17 @@ class Airport extends Component{
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <Modal header='Editar Aeropuerto' className="center"
+                                                    <Modal header='Editar Aeropuerto' className="MiModal center"
+                                                        fixedFooter
+                                                        actions={
+                                                            <div>
+                                                                <Button flat style={{padding:" 10px 15px"}} disabled/>
+                                                                <Button modal="close" className="btn light-blue darken-3" >Cerrar  </Button>
+                                                            </div>
+                                                        }
+                                                        modalOptions={{dismissible:false,
+                                                                    complete:()=>this.fetchAirports(),
+                                                                    }}
                                                         trigger={
                                                             <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}}>
                                                                 <i className="material-icons ">edit</i>

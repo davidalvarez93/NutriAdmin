@@ -15,6 +15,7 @@
   height: 20px;
 }
 
-.MiModal { width: 50%  ; height: 70%  ; }
+.MiModal { width: 50%  ;  min-height: 74%}
+.MiModalVuelo { width: 50%  ;  min-height: 80%}
 
 .MiTabla{ height: 5px;}

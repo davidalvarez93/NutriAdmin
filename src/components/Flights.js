@@ -56,14 +56,23 @@ class Airport extends Component{
                         </div>
                         <div className="col s3 "><a className="waves-effect waves-light light-blue darken-3 btn-large">Search</a></div>
                         <div className="col s3 push-s1 ">
-                        <Modal header="Agregar nuevo aeropuerto" className="MiModal center"
+                        <Modal header="Agregar nuevo aeropuerto" className="MiModalVuelo center"
+                            fixedFooter
+                            actions={
+                                <div>
+                                    <Button flat style={{padding:" 10px 22px"}} disabled/>
+                                    <Button modal="close" className="btn light-blue darken-3">Cerrar  </Button>
+                                </div>
+                              }
+                              modalOptions={{dismissible:false,
+                                complete:()=>this.fetchFlights(),
+                                }}
                             trigger={
                                 <Button className="waves-effect waves-light light-blue darken-3">
                                     Agregar Aeropuerto
                                 </Button>
                             }>
                             <AddAirportView/> 
-                            {this.fetchFlights()}
                         </Modal>
                         </div>
                     </div>
@@ -104,7 +113,17 @@ class Airport extends Component{
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <Modal header='Editar Vuelo'  className="center" 
+                                                    <Modal header='Editar Vuelo'  className="MiModal center"
+                                                        fixedFooter 
+                                                        actions={
+                                                            <div>
+                                                                <Button flat style={{padding:" 10px 15px"}} disabled/>
+                                                                <Button modal="close" className="btn light-blue darken-3" >Cerrar  </Button>
+                                                            </div>
+                                                        }
+                                                        modalOptions={{dismissible:false,
+                                                            complete:()=>this.fetchFlights(),
+                                                            }}                                                   
                                                         trigger={
                                                             <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}}>
                                                                 <i className="material-icons ">edit</i>
