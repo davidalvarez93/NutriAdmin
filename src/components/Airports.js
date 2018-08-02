@@ -1,6 +1,6 @@
 
 import React, {Component } from 'react';
-import { Modal, Button, Icon } from 'react-materialize';
+import { Modal, Button } from 'react-materialize';
 import AddAirportView from './AddAirport';
 import EditAirportView from './EditAirports'
 
