@@ -84,7 +84,7 @@ class Permisos extends Component{
                                     <th>Fecha de Creación</th>
                                     <th>Aeropuertos</th>
                                     <th>Vuelos</th>
-                                    <th>Permisos</th>
+                                    <th>Usuarios</th>
                                     <th></th>
                                 </tr>
                             </thead>
