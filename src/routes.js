@@ -8,7 +8,7 @@ import Page404 from './components/Page404';
 
 import loginforms from './components/loginforms';
 import welcomeforms from './components/welcomeforms';
-import Footer from './components/Footer';
+import Footer from './components/footer';
 import Navigation from './components/Navigation';
 
 
