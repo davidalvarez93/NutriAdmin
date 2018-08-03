@@ -53,7 +53,7 @@ class Airport extends Component{
         })
         .then(res => res.json())
         .then(data => {console.log(data)
-        window.Materialize.toast("Vuelo Actualizado",4000)
+        window.Materialize.toast("Vuelo Actualizado",900,"light-blue darken-3")
         });
     }
 
