@@ -58,7 +58,7 @@ class Airport extends Component{
             })
             .then(res=>res.json())
             .then(data=>{
-                window.Materialize.toast("Aeropuerto Eliminado");
+                window.Materialize.toast("Aeropuerto Eliminado",900,"light-blue darken-3");
                 this.fetchFlights();
             });
         }

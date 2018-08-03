@@ -30,7 +30,7 @@ class Airport extends Component{
         })
         .then(res=> res.json())
         .then(data => {
-            window.Materialize.toast("Aeropuerto Agregado",4000)
+            window.Materialize.toast("Aeropuerto Agregado",900,"light-blue darken-3")
             this.setState({
                 Ap_Name:'', 
                 Ap_Country:'',

@@ -31,7 +31,7 @@ class Flight extends Component{
         })
         .then(res=> res.json())
         .then(data => {
-            window.Materialize.toast("Vuelo Agregado",4000)
+            window.Materialize.toast("Vuelo Agregado",900,"light-blue darken-3")
             this.setState({
                 Origen: '',
                 Fecha_De_Salida:'',
