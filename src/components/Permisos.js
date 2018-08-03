@@ -1,8 +1,12 @@
 import React, {Component } from 'react';
-import { Modal, Button } from 'react-materialize';
+import { Modal, Button, Row, Col} from 'react-materialize';
+import SearchInput, {createFilter} from 'react-search-input'
 import AddUserView from './AddUser';
 
 import './estilos.css'
+
+
+const KEYS_TO_FILTERS = ['Ap_Name', 'Ap_Country', 'Ap_State']
 
 
 class Permisos extends Component{
@@ -15,10 +19,12 @@ class Permisos extends Component{
             Ap_City:'',
             Ap_Address:'',
             _id:'',
-            Aeropuertos:[]
+            Aeropuertos:[],
+            searchTerm: ''
         };
+        this.searchUpdated = this.searchUpdated.bind(this)
     }
-
+    
     componentDidMount(){
         this.fetchAirports();
        
@@ -50,18 +56,17 @@ class Permisos extends Component{
     }
 
     render(){
+        const filteredAeropuertos = this.state.Aeropuertos.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
         return(
             [
                 <div className="container">
                 <div className="section">
-                    <div className="row valign-wrapper">
-                        <div className="col s6 input-field light-blue darken-3 ">
-                            <input id="search" type="search" required/>
-                            <label className="label-icon" ><i className="material-icons">search</i></label>
-                            <i className="material-icons">close</i>
-                        </div>
-                        <div className="col s3 "><a className="waves-effect waves-light light-blue darken-3 btn-large">Search</a></div>
-                        <div className="col s3 push-s1 ">
+                <div>
+        <Row>
+        <SearchInput  style={{width: "400px",position: "relative", padding: "10px 10px",
+  height: "15px", lenght: "400px"}} 
+        className="col s6 search-input light-blue darken-3" onChange={this.searchUpdated} />
+            <Col className="col s5 push-s1 ">
                         <Modal header="Agregar nuevo Usuario" className="MiModal center"
                             trigger={
                                 <Button className="waves-effect waves-light light-blue darken-3">
@@ -71,10 +76,9 @@ class Permisos extends Component{
                             <AddUserView/> 
                             {this.fetchAirports()}
                         </Modal>
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
+                            </Col>
+                        </Row>
+        <div className="row">
                     <div className="col s12 ">
                         <table className=" highlight">
                             <thead>
@@ -89,15 +93,16 @@ class Permisos extends Component{
                                 </tr>
                             </thead>
                             <tbody >
-                                {
-                                    this.state.Aeropuertos.map(Aeropuertos=>{
-                                        return(
-                                            <tr key={Aeropuertos._id}>
+        
+        {filteredAeropuertos.map(Aeropuertos => {
+          return (
+<tr key={Aeropuertos._id}>
                                                 <td>{Aeropuertos.Ap_Name}</td>
                                                 <td>{Aeropuertos.Ap_Country}</td>
                                                 <td>{Aeropuertos.Ap_State}</td>
                                                 <td>{Aeropuertos.Ap_City}</td>
                                                 <td>{Aeropuertos.Ap_Address}</td>
+                                                <td>{Aeropuertos.Ap_Name}</td>
                                                 <td>
                                                     <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}} 
                                                     onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
@@ -106,10 +111,10 @@ class Permisos extends Component{
                                                 </td>
 
                                             </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>
+          )
+        })
+        }
+         </tbody>
                         </table>
                         <ul class="pagination center">
                             <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
@@ -120,11 +125,18 @@ class Permisos extends Component{
                             <li class="waves-effect"><a href="#!">5</a></li>
                             <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                         </ul>
+                        </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    </div>
+                    </div>
+
+                    
             ]
         )
+    }    
+        searchUpdated (term) {
+            this.setState({searchTerm: term})
     }
 }
 
