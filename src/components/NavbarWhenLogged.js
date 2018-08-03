@@ -20,6 +20,7 @@ class NavbarWhenLogged extends Component{
                             }>
                             <Link className="light-blue darken-3 valign-wrapper" to="/Airports">Aeropuertos</Link>
                             <Link className="light-blue darken-3 valign-wrapper" to="/Vuelos">Vuelos</Link>
+                            <Link className="light-blue darken-3 valign-wrapper" to="/Permisos">Permisos</Link>
                             <NavItem divider />
                             <Link className="light-blue darken-3 valign-wrapper" to="/">Cerrar Sesion</Link>
                             </Dropdown>

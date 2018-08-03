@@ -1,6 +1,13 @@
 .MiNavigation {     
     height: 40px;
   }
+
+  
+.search-input {
+  padding: 10px 10px;
+  height: 52px;
+  position: relative;
+}
   
 .MiFooter {
   height: 40px;

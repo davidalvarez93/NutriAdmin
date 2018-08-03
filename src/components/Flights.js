@@ -1,17 +1,38 @@
 
 import React, {Component } from 'react';
-import { Modal, Button } from 'react-materialize';
-import AddAirportView from './AddFlights';
+import { Modal, Button, Row, Col} from 'react-materialize';
+import SearchInput, {createFilter} from 'react-search-input';
+import AddAFlightsView from './AddFlights';
 import EditFlights from './EditFlights';
 
 import './estilos.css'
+
+const KEYS_TO_FILTERS = [
+    'Origen', 'Fecha_De_Salida', 
+    'Hora_De_Salida', 
+    'Destino', 
+    'Fecha_De_Llegada', 
+    'Hora_De_Llegada',
+    'Capacidad',
+    'Precio'
+]
 
 class Airport extends Component{
     constructor(props){
         super(props);
         this.state={
-            Vuelos:[]
+            Origen:'',
+            Fecha_De_Salida:'',
+            Hora_De_Salida:'',
+            Destino:'',
+            Fecha_De_Llegada:'',
+            Hora_De_Llegada:'',
+            Capacidad:'',
+            Precio:'',
+            Vuelos:[],
+            searchTerm:''
         };
+        this.searchUpdated = this.searchUpdated.bind(this)
     }
     
     componentDidMount(){
@@ -45,44 +66,34 @@ class Airport extends Component{
 
 
     render(){
+        const filteredVuelos = this.state.Vuelos.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
         return(
-            <div className="container">
+            [
+                <div className="container">
                 <div className="section">
-                    <div className="row valign-wrapper">
-                        <div className="col s6 input-field light-blue darken-3 ">
-                            <input id="search" type="search" required/>
-                            <label className="label-icon" ><i className="material-icons">search</i></label>
-                            <i className="material-icons">close</i>
-                        </div>
-                        <div className="col s3 "><a className="waves-effect waves-light light-blue darken-3 btn-large">Search</a></div>
-                        <div className="col s3 push-s1 ">
-                        <Modal header="Agregar nuevo aeropuerto" className="MiModalVuelo center"
-                            fixedFooter
-                            actions={
-                                <div>
-                                    <Button flat style={{padding:" 10px 22px"}} disabled/>
-                                    <Button modal="close" className="btn light-blue darken-3">Cerrar  </Button>
-                                </div>
-                              }
-                              modalOptions={{dismissible:false,
-                                complete:()=>this.fetchFlights(),
-                                }}
+                <div>
+        <Row>
+        <SearchInput  style={{width: "400px",position: "relative", padding: "10px 10px",
+  height: "15px", lenght: "400px"}} 
+        className="col s6 search-input light-blue darken-3" onChange={this.searchUpdated} />
+            <Col className="col s5 push-s1 ">
+                        <Modal header="Agregar Nuevo Vuelo" className="MiModal center"
                             trigger={
                                 <Button className="waves-effect waves-light light-blue darken-3">
-                                    Agregar Aeropuerto
+                                    Agregar Vuelo
                                 </Button>
                             }>
-                            <AddAirportView/> 
+                            <AddAFlightsView/> 
+                            {this.fetchFlights()}
                         </Modal>
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
+                            </Col>
+                        </Row>
+        <div className="row">
                     <div className="col s12 ">
                         <table className=" highlight">
                             <thead>
                                 <tr>
-                                    <th>Origen</th>
+                                <th>Origen</th>
                                     <th>Fecha De Salida</th>
                                     <th>Hora De Salida</th>
                                     <th>Destino</th>
@@ -94,49 +105,50 @@ class Airport extends Component{
                                 </tr>
                             </thead>
                             <tbody >
-                                {
-                                    this.state.Vuelos.map(Vuelos=>{
-                                        return(
-                                            <tr key={Vuelos._id}>
-                                                <td>{Vuelos.Origen}</td>
-                                                <td>{Vuelos.Fecha_De_Salida}</td>
-                                                <td>{Vuelos.Hora_De_Salida}</td>
-                                                <td>{Vuelos.Destino}</td>
-                                                <td>{Vuelos.Fecha_De_Llegada}</td>
-                                                <td>{Vuelos.Hora_De_Llegada}</td>
-                                                <td>{Vuelos.Capacidad}</td>
-                                                <td>{Vuelos.Precio}</td>
-                                                <td>
-                                                    <button className="waves-effect waves-light light-blue darken-3 btn small" style={{margin:"6px"}} 
-                                                     onClick={()=>this.DeleteFlights(Vuelos._id)}>
-                                                        <i className="material-icons ">delete</i>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <Modal header='Editar Vuelo'  className="MiModal center"
-                                                        fixedFooter 
-                                                        actions={
-                                                            <div>
-                                                                <Button flat style={{padding:" 10px 22px"}} disabled/>
-                                                                <Button modal="close" className="btn light-blue darken-3" >Cerrar  </Button>
-                                                            </div>
-                                                        }
-                                                        modalOptions={{dismissible:false,
-                                                            complete:()=>this.fetchFlights(),
-                                                            }}                                                   
-                                                        trigger={
-                                                            <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}}>
-                                                                <i className="material-icons ">edit</i>
-                                                            </button>
-                                                        }>
-                                                    <EditFlights IdFromParent={Vuelos._id}/>
-                                                    </Modal>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>
+        
+        {filteredVuelos.map(Vuelos => {
+          return (
+            <tr key={Vuelos._id}>
+            <td>{Vuelos.Origen}</td>
+            <td>{Vuelos.Fecha_De_Salida}</td>
+            <td>{Vuelos.Hora_De_Salida}</td>
+            <td>{Vuelos.Destino}</td>
+            <td>{Vuelos.Fecha_De_Llegada}</td>
+            <td>{Vuelos.Hora_De_Llegada}</td>
+            <td>{Vuelos.Capacidad}</td>
+            <td>{Vuelos.Precio}</td>
+            <td>
+
+            <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}} 
+                onClick={()=>this.DeleteFlights(Vuelos._id)}>
+                <i className="material-icons ">delete</i>
+            </button>
+            </td>
+            <td>
+                <Modal header='Editar Aeropuerto' className="MiModal center"
+                    fixedFooter
+                    actions={
+                    <div>
+                        <Button flat style={{padding:" 10px 15px"}} disabled/>
+                        <Button modal="close" className="btn light-blue darken-3" >Cerrar  </Button>
+                    </div>
+                    }
+                    modalOptions={{dismissible:false,
+                    complete:()=>this.fetchFlights(),
+                    }}
+                    trigger={
+                        <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}}>
+                            <i className="material-icons ">edit</i>
+                        </button>
+                    }>
+                    <EditFlights IdFromParent={Vuelos._id}/>
+                </Modal>
+            </td>
+         </tr>
+          )
+        })
+        }
+         </tbody>
                         </table>
                         <ul className="pagination center">
                             <li className="disabled"><a href="#!"><i className="material-icons">chevron_left</i></a></li>
@@ -147,10 +159,18 @@ class Airport extends Component{
                             <li className="waves-effect"><a href="#!">5</a></li>
                             <li className="waves-effect"><a href="#!"><i className="material-icons">chevron_right</i></a></li>
                         </ul>
+                        </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    </div>
+                    </div>
+
+                    
+            ]
         )
+    }    
+        searchUpdated (term) {
+            this.setState({searchTerm: term})
     }
 }
 
