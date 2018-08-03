@@ -1,12 +1,7 @@
 
 import React, {Component } from 'react';
 import { Modal, Button, Row, Col} from 'react-materialize';
-<<<<<<< HEAD
-import SearchInput, {createFilter} from 'react-search-input';
-
-=======
 import SearchInput, {createFilter} from 'react-search-input'; 
->>>>>>> master
 import AddAirportView from './AddAirport';
 import EditAirportView from './EditAirports'
 
