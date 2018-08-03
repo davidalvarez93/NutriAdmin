@@ -1,15 +1,15 @@
-
 import React, {Component } from 'react';
 import { Modal, Button, Row, Col} from 'react-materialize';
-import SearchInput, {createFilter} from 'react-search-input'; 
-import AddAirportView from './AddAirport';
-import EditAirportView from './EditAirports'
+import SearchInput, {createFilter} from 'react-search-input'
+import AddUserView from './AddUser';
 
 import './estilos.css'
 
-const KEYS_TO_FILTERS = ['Ap_Name', 'Ap_Country', 'Ap_State', 'Ap_City', 'Ap_Address']
 
-class Airport extends Component{
+const KEYS_TO_FILTERS = ['Ap_Name', 'Ap_Country', 'Ap_State']
+
+
+class Permisos extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -24,12 +24,12 @@ class Airport extends Component{
         };
         this.searchUpdated = this.searchUpdated.bind(this)
     }
-
+    
     componentDidMount(){
         this.fetchAirports();
        
     }
-    
+
     fetchAirports(){
         fetch('http://localhost:3001/api/journeys/Apts/')  
             .then(res=>res.json())
@@ -54,9 +54,7 @@ class Airport extends Component{
             });
         }
     }
-    nolose(){
-        console.log("si funciona");
-    }
+
     render(){
         const filteredAeropuertos = this.state.Aeropuertos.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
         return(
@@ -69,13 +67,13 @@ class Airport extends Component{
   height: "15px", lenght: "400px"}} 
         className="col s6 search-input light-blue darken-3" onChange={this.searchUpdated} />
             <Col className="col s5 push-s1 ">
-                        <Modal header="Agregar Nuevo Aeropuerto" className="MiModal center"
+                        <Modal header="Agregar nuevo Usuario" className="MiModal center"
                             trigger={
                                 <Button className="waves-effect waves-light light-blue darken-3">
-                                    Agregar Aeropuerto
+                                    Agregar Usuario Admin
                                 </Button>
                             }>
-                            <AddAirportView/> 
+                            <AddUserView/> 
                             {this.fetchAirports()}
                         </Modal>
                             </Col>
@@ -85,11 +83,12 @@ class Airport extends Component{
                         <table className=" highlight">
                             <thead>
                                 <tr>
-                                <th>Nombre de Aeropuerto</th>
-                                    <th>Pais</th>
-                                    <th>Estado</th>
-                                    <th>Ciudad</th>
-                                    <th>Dirección</th>
+                                    <th>Numero</th>
+                                    <th>Usuario</th>
+                                    <th>Fecha de Creación</th>
+                                    <th>Aeropuertos</th>
+                                    <th>Vuelos</th>
+                                    <th>Usuarios</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -103,46 +102,28 @@ class Airport extends Component{
                                                 <td>{Aeropuertos.Ap_State}</td>
                                                 <td>{Aeropuertos.Ap_City}</td>
                                                 <td>{Aeropuertos.Ap_Address}</td>
+                                                <td>{Aeropuertos.Ap_Name}</td>
                                                 <td>
-                                                <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}} 
+                                                    <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}} 
                                                     onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
                                                         <i className="material-icons ">delete</i>
                                                     </button>
                                                 </td>
-                                                <td>
-                                                    <Modal header='Editar Aeropuerto' className="MiModal center"
-                                                        fixedFooter
-                                                        actions={
-                                                            <div>
-                                                                <Button flat style={{padding:" 10px 15px"}} disabled/>
-                                                                <Button modal="close" className="btn light-blue darken-3" >Cerrar  </Button>
-                                                            </div>
-                                                        }
-                                                        modalOptions={{dismissible:false,
-                                                                    complete:()=>this.fetchAirports(),
-                                                                    }}
-                                                        trigger={
-                                                            <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}}>
-                                                                <i className="material-icons ">edit</i>
-                                                            </button>
-                                                        }>
-                                                    <EditAirportView IdFromParent={Aeropuertos._id}/>
-                                                    </Modal>
-                                                </td>
+
                                             </tr>
           )
         })
         }
          </tbody>
                         </table>
-                        <ul className="pagination center">
-                            <li className="disabled"><a href="#!"><i className="material-icons">chevron_left</i></a></li>
-                            <li className="active"><a href="#!">1</a></li>
-                            <li className="waves-effect"><a href="#!">2</a></li>
-                            <li className="waves-effect"><a href="#!">3</a></li>
-                            <li className="waves-effect"><a href="#!">4</a></li>
-                            <li className="waves-effect"><a href="#!">5</a></li>
-                            <li className="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                        <ul class="pagination center">
+                            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                            <li class="active"><a href="#!">1</a></li>
+                            <li class="waves-effect"><a href="#!">2</a></li>
+                            <li class="waves-effect"><a href="#!">3</a></li>
+                            <li class="waves-effect"><a href="#!">4</a></li>
+                            <li class="waves-effect"><a href="#!">5</a></li>
+                            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                         </ul>
                         </div>
                         </div>
@@ -159,4 +140,4 @@ class Airport extends Component{
     }
 }
 
-export default Airport;
+export default Permisos;

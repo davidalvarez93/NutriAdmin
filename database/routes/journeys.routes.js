@@ -3,6 +3,7 @@ const router = express.Router();
 
 const airportModel = require('../models/airportsModel');
 const flightModel = require('../models/flightsModel');
+const AdminModel = require('../models/AdminModel');
 
 router.get('/Apts/', async (req,res)=>{
     const TodosLosAeropuertos = await airportModel.find();
@@ -36,8 +37,6 @@ router.delete('/Apts/:id', async (req,res)=>{
 
 
 //////////////////////////////////////////////////////////////////////////////////
-
-
 
 router.get('/Flgts/', async (req,res)=>{
     const TodosLosVuelos = await flightModel.find();
