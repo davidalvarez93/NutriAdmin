@@ -52,7 +52,9 @@ class Airport extends Component{
             [name]: value
         });
     }
-
+    componentWillUnmount(){
+        console.log("modal unmounted");
+    }
     render(){
         return(
             <div>
@@ -85,7 +87,13 @@ class Airport extends Component{
                     <div className="row"></div>
                     <div className="row">
                         <div className="col s1 push-s9">
-                            <button type="submit" className="btn light-blue darken-3">Agregar</button>
+                            <button type="submit" className="btn light-blue darken-3" disabled={
+                                !this.state.Ap_Address ||
+                                !this.state.Ap_City ||
+                                !this.state.Ap_Country ||
+                                !this.state.Ap_Name ||
+                                !this.state.Ap_State
+                            }>Agregar</button>
                         </div>
                     </div>
                 </form>

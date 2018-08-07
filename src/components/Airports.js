@@ -58,6 +58,9 @@ class Airport extends Component{
         this.setState({searchTerm: term})
     }
 
+    componentWillUnmount(){
+        console.log("modal unmounted");
+    }
     render(){
         const filteredAeropuertos = this.state.Aeropuertos.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
         return(

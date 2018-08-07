@@ -13,12 +13,3 @@ let PermissionsSchema = new Schema({
 
 module.exports=mongoose.model('Permissions',PermissionsSchema);
 
-/*
-Numero(id)
-Usuario(nombre/alias)
-Fecha de creacion (date)
-Aeropuerto (bool)
-Vuelos (bool)
-Usuarios (bool)
-
-*/

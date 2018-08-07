@@ -100,7 +100,16 @@ class Flight extends Component{
                     <div className="row"></div>
                     <div className="row">
                         <div className="col s1 push-s9">
-                            <button type="submit" className="btn light-blue darken-3">Agregar</button>
+                            <button type="submit" className="btn light-blue darken-3" disabled={
+                                !this.state.Origen ||
+                                !this.state.Fecha_De_Salida||
+                                !this.state.Hora_De_Salida||
+                                !this.state.Destino||
+                                !this.state.Fecha_De_Llegada||
+                                !this.state.Hora_De_Llegada||
+                                !this.state.Capacidad||
+                                !this.state.Precio
+                            }>Agregar</button>
                         </div>
                     </div>
                 </form>
