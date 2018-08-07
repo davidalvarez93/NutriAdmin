@@ -1,5 +1,5 @@
 import React, {Component } from 'react';
-import { Modal, Button, Row, Col, Input} from 'react-materialize';
+import { Modal, Button, Row, Col, Input, Dropdown} from 'react-materialize';
 import SearchInput, {createFilter} from 'react-search-input';
 import Switch from "react-switch";
 import AddUserView from './AddUser';
@@ -22,7 +22,7 @@ class Permisos extends Component{
             _id:'',
             Aeropuertos:[],
             searchTerm: '',
-            checked: [],
+            checked:'',
         };
         this.handleChange = this.handleChange.bind(this);
         this.searchUpdated = this.searchUpdated.bind(this);
@@ -131,11 +131,11 @@ class Permisos extends Component{
                                                     defaultValue='checked' 
                                                     disabled=''
                                                     onChange={function(e, value){}}/>}</td>
-                                                <td>{<label htmlFor={Aeropuertos._id}>
+                                                <td>{<label htmlFor={Aeropuertos.checked}>
         <span>ena/dis</span>
         <Switch
           onChange={this.handleChange}
-          checked={this.state.checked}
+          checked={this.state.Aeropuertos.checked}
           id={Aeropuertos._id}
         />
       </label> }</td>

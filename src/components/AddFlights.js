@@ -1,4 +1,5 @@
 import React, {Component } from 'react';
+import {Dropdown, Button, NavItem} from 'react-materialize';
 import './estilos.css'
 
 class Flight extends Component{
@@ -62,7 +63,15 @@ class Flight extends Component{
             <form onSubmit={this.AddFlight}>
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Origen" value={this.state.Origen} onChange={this.handleChange} type="text" placeholder="Origen"/>
+                                                
+                                                <Dropdown trigger={
+                                                    <Button>Origen</Button>
+                                                }>
+                                                    <NavItem>one</NavItem>
+                                                    <NavItem>two</NavItem>
+                                                    <NavItem divider />
+                                                    <NavItem>three</NavItem>
+                                                </Dropdown>
                                             </div>
                                         </div>
                                         <div className="row">
