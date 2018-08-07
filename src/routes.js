@@ -9,7 +9,7 @@ import Permisos from './components/Permisos';
 
 import loginforms from './components/loginforms';
 import welcomeforms from './components/welcomeforms';
-import Footer from './components/footer';
+import Footer from './components/Footer';
 import Navigation from './components/Navigation';
 
 

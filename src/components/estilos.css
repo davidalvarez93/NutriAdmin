@@ -26,3 +26,11 @@
 .MiModalVuelo { width: 50%  ;  min-height: 80%}
 
 .MiTabla{ height: 5px;}
+
+.MiSearchBar{
+  width: "400px";
+  position: "relative";
+  padding: "10px 10px";
+  height: "15px";
+  
+}

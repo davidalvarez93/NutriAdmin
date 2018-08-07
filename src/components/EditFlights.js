@@ -53,7 +53,7 @@ class Airport extends Component{
         })
         .then(res => res.json())
         .then(data => {console.log(data)
-        window.Materialize.toast("Vuelo Actualizado",4000)
+        window.Materialize.toast("Vuelo Actualizado",900,"light-blue darken-3")
         });
     }
 
@@ -110,7 +110,16 @@ class Airport extends Component{
                 <div className="row"></div>
                 <div className="row">
                     <div className="col s1 push-s9">
-                        <button onClick={()=>{this.GuardarCambios()}}  className="btn light-blue darken-3 large">
+                        <button onClick={()=>{this.GuardarCambios()}}  className="btn light-blue darken-3 large" disabled={
+                            !this.state.Origen ||
+                            !this.state.Fecha_De_Salida||
+                            !this.state.Hora_De_Salida||
+                            !this.state.Destino||
+                            !this.state.Fecha_De_Llegada||
+                            !this.state.Hora_De_Llegada||
+                            !this.state.Capacidad||
+                            !this.state.Precio
+                        }>
                             Guardar
                         </button>
                     </div>

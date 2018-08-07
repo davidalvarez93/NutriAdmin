@@ -19,7 +19,6 @@ class Flight extends Component{
         this.AddFlight=this.AddFlight.bind(this);
     }
 
-
     AddFlight(e){
         
         fetch('http://localhost:3001/api/journeys/Flgts/', {
@@ -32,7 +31,7 @@ class Flight extends Component{
         })
         .then(res=> res.json())
         .then(data => {
-            window.Materialize.toast("Vuelo Agregado",4000)
+            window.Materialize.toast("Vuelo Agregado",900,"light-blue darken-3")
             this.setState({
                 Origen: '',
                 Fecha_De_Salida:'',
@@ -46,8 +45,6 @@ class Flight extends Component{
         })
         .catch(err=> console.error(err));
         e.preventDefault();
-
-
     }
 
     handleChange(e){
@@ -60,6 +57,7 @@ class Flight extends Component{
     render(){
         return(
             <div>
+<<<<<<< HEAD
             <form onSubmit={this.AddFlight}>
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
@@ -117,6 +115,66 @@ class Flight extends Component{
                                         </div>
                                     </form>
         </div>
+=======
+                <form onSubmit={this.AddFlight}>
+                    <div className="row">
+                        <div className="input-field col s10 push-s1 MiInputField">
+                            <input name="Origen" value={this.state.Origen} onChange={this.handleChange} type="text" placeholder="Origen"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s10 push-s1 MiInputField">
+                            <input name="Fecha_De_Salida" value={this.state.Fecha_De_Salida} onChange={this.handleChange} type="text" placeholder="Fecha de Salida"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s10 push-s1 MiInputField">
+                            <input name="Hora_De_Salida" value={this.state.Hora_De_Salida} onChange={this.handleChange}  type="text" placeholder="Hora de Salida"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s10 push-s1 MiInputField">
+                            <input name="Destino" value={this.state.Destino} onChange={this.handleChange}  type="text" placeholder="Destino"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s10 push-s1 MiInputField">
+                            <input name="Fecha_De_Llegada" value={this.state.Fecha_De_Llegada} onChange={this.handleChange}  type="text" placeholder="Fecha de Llegada"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s10 push-s1 MiInputField">
+                            <input name="Hora_De_Llegada" value={this.state.Hora_De_Llegada} onChange={this.handleChange} type="text" placeholder="Hora de Llegada"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s10 push-s1 MiInputField">
+                            <input name="Capacidad" value={this.state.Capacidad} onChange={this.handleChange} type="text" placeholder="Capacidad"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s10 push-s1 MiInputField">
+                            <input name="Precio" value={this.state.Precio} onChange={this.handleChange} type="text" placeholder="Precio"/>
+                        </div>
+                    </div>
+                    <div className="row"></div>
+                    <div className="row">
+                        <div className="col s1 push-s9">
+                            <button type="submit" className="btn light-blue darken-3" disabled={
+                                !this.state.Origen ||
+                                !this.state.Fecha_De_Salida||
+                                !this.state.Hora_De_Salida||
+                                !this.state.Destino||
+                                !this.state.Fecha_De_Llegada||
+                                !this.state.Hora_De_Llegada||
+                                !this.state.Capacidad||
+                                !this.state.Precio
+                            }>Agregar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+>>>>>>> 9b0a6f8a0735ae74e9309ff4e70932315e70b140
         )
     }
 }
