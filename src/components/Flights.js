@@ -8,7 +8,8 @@ import EditFlights from './EditFlights';
 import './estilos.css'
 
 const KEYS_TO_FILTERS = [
-    'Origen', 'Fecha_De_Salida', 
+    'Origen', 
+    'Fecha_De_Salida', 
     'Hora_De_Salida', 
     'Destino', 
     'Fecha_De_Llegada', 

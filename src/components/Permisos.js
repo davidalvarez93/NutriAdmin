@@ -1,6 +1,7 @@
 import React, {Component } from 'react';
-import { Modal, Button, Row, Col} from 'react-materialize';
-import SearchInput, {createFilter} from 'react-search-input'
+import { Modal, Button, Row, Col, Input} from 'react-materialize';
+import SearchInput, {createFilter} from 'react-search-input';
+import Switch from "react-switch";
 import AddUserView from './AddUser';
 
 import './estilos.css'
@@ -20,15 +21,21 @@ class Permisos extends Component{
             Ap_Address:'',
             _id:'',
             Aeropuertos:[],
-            searchTerm: ''
+            searchTerm: '',
+            checked: [],
         };
-        this.searchUpdated = this.searchUpdated.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.searchUpdated = this.searchUpdated.bind(this);
     }
     
     componentDidMount(){
         this.fetchAirports();
        
     }
+
+    handleChange(checked) {
+        this.setState({ checked });
+      }
 
     fetchAirports(){
         fetch('http://localhost:3001/api/journeys/Apts/')  
@@ -88,27 +95,50 @@ class Permisos extends Component{
                                     <th>Fecha de Creación</th>
                                     <th>Aeropuertos</th>
                                     <th>Vuelos</th>
-                                    <th>Usuarios</th>
-                                    <th></th>
+                                    <th>Permisos</th>
+                                    <th>Deshabilitar/Habilitar</th>
                                 </tr>
                             </thead>
                             <tbody >
         
         {filteredAeropuertos.map(Aeropuertos => {
-          return (
-<tr key={Aeropuertos._id}>
+            return (
+                <tr key={Aeropuertos._id}>
                                                 <td>{Aeropuertos.Ap_Name}</td>
                                                 <td>{Aeropuertos.Ap_Country}</td>
                                                 <td>{Aeropuertos.Ap_State}</td>
-                                                <td>{Aeropuertos.Ap_City}</td>
-                                                <td>{Aeropuertos.Ap_Address}</td>
-                                                <td>{Aeropuertos.Ap_Name}</td>
-                                                <td>
-                                                    <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}} 
-                                                    onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
-                                                        <i className="material-icons ">delete</i>
-                                                    </button>
-                                                </td>
+                                                <td>{<Input name='group1' 
+                                                    type='checkbox' 
+                                                    value='green' 
+                                                    label='A' 
+                                                    className='filled-in' 
+                                                    defaultValue='checked' 
+                                                    disabled=''
+                                                    onChange={function(e, value){}}/>}</td>
+                                                <td>{<Input name='group1' 
+                                                    type='checkbox' 
+                                                    value='green' 
+                                                    label='V' 
+                                                    className='filled-in' 
+                                                    defaultValue='checked' 
+                                                    disabled=''
+                                                    onChange={function(e, value){}}/>}</td>
+                                                <td>{<Input name='group1' 
+                                                    type='checkbox' 
+                                                    value='green' 
+                                                    label='P' 
+                                                    className='filled-in' 
+                                                    defaultValue='checked' 
+                                                    disabled=''
+                                                    onChange={function(e, value){}}/>}</td>
+                                                <td>{<label htmlFor={Aeropuertos._id}>
+        <span>ena/dis</span>
+        <Switch
+          onChange={this.handleChange}
+          checked={this.state.checked}
+          id={Aeropuertos._id}
+        />
+      </label> }</td>
 
                                             </tr>
           )
