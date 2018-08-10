@@ -1,5 +1,5 @@
 import React, {Component } from 'react';
-import { Modal, Button, Row, Col, Input, Dropdown} from 'react-materialize';
+import { Modal, Button, Row, Col, Input} from 'react-materialize';
 import SearchInput, {createFilter} from 'react-search-input';
 import Switch from "react-switch";
 import AddUserView from './AddUser';
@@ -29,6 +29,16 @@ class Permisos extends Component{
         this.searchUpdated = this.searchUpdated.bind(this);
     }
     
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
+      }
+
     componentDidMount(){
         this.fetchPermisos();
        
@@ -114,8 +124,6 @@ class Permisos extends Component{
                                                     label='A'
                                                     className='filled-in' 
                                                     defaultValue='checked'
-                                                     
-                                                    
                                                     onChange={function(e, value){}}/>}</td>
                                                 <td>{<Input name='group2' 
                                                     type='checkbox' 
