@@ -1,11 +1,17 @@
 import React, {Component } from 'react';
-import {Dropdown, Button, NavItem} from 'react-materialize';
+import {Dropdow, Button, NavItem ,Input} from 'react-materialize';
+
 import './estilos.css'
+
+
+
 
 class Flight extends Component{
     constructor(){
         super();
         this.state={
+            Ap_Name:'',
+            Ap_Country:'',
             Origen: '',
             Fecha_De_Salida: '',
             Hora_De_Salida: '',
@@ -13,10 +19,26 @@ class Flight extends Component{
             Fecha_De_Llegada: '',
             Hora_De_Llegada: '',
             Capacidad: '',
-            Precio: ''
+            Precio: '',
+            Aeropuertos:[],
+            _id:''
         };
         this.handleChange=this.handleChange.bind(this);
         this.AddFlight=this.AddFlight.bind(this);
+    }
+
+
+
+    componentDidMount() {
+     this.fetchAirports();
+    }
+
+    fetchAirports(){
+        fetch('http://localhost:3001/api/journeys/Apts/')  
+            .then(res=>res.json())
+            .then(data=>{
+                this.setState({Aeropuertos:data});
+            });
     }
 
     AddFlight(e){
@@ -46,6 +68,7 @@ class Flight extends Component{
         .catch(err=> console.error(err));
         e.preventDefault();
     }
+    
 
     handleChange(e){
         const {name, value} = e.target;
@@ -55,73 +78,31 @@ class Flight extends Component{
     }
 
     render(){
+        let optionItems = this.state.Aeropuertos.map((Aeropuerto) =>
+        <option key={Aeropuerto._id}>{Aeropuerto.Ap_Name}</option>
+    );
+         
+ 
         return(
             <div>
-<<<<<<< HEAD
-            <form onSubmit={this.AddFlight}>
-                                        <div className="row">
-                                            <div className="input-field col s10 push-s1 MiInputField">
-                                                
-                                                <Dropdown trigger={
-                                                    <Button>Origen</Button>
-                                                }>
-                                                    <NavItem>one</NavItem>
-                                                    <NavItem>two</NavItem>
-                                                    <NavItem divider />
-                                                    <NavItem>three</NavItem>
-                                                </Dropdown>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Fecha_De_Salida" value={this.state.Fecha_De_Salida} onChange={this.handleChange} type="text" placeholder="Fecha de Salida"/>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Hora_De_Salida" value={this.state.Hora_De_Salida} onChange={this.handleChange}  type="text" placeholder="Hora de Salida"/>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Destino" value={this.state.Destino} onChange={this.handleChange}  type="text" placeholder="Destino"/>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Fecha_De_Llegada" value={this.state.Fecha_De_Llegada} onChange={this.handleChange}  type="text" placeholder="Fecha de Llegada"/>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Hora_De_Llegada" value={this.state.Hora_De_Llegada} onChange={this.handleChange} type="text" placeholder="Hora de Llegada"/>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Capacidad" value={this.state.Capacidad} onChange={this.handleChange} type="text" placeholder="Capacidad"/>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Precio" value={this.state.Precio} onChange={this.handleChange} type="text" placeholder="Precio"/>
-                                            </div>
-                                        </div>
-                                        <div className="row"></div>
-                                        <div className="row">
-                                            <div className="col s1 push-s9">
-                                                <button type="submit" className="btn light-blue darken-3">Agregar</button>
-                                            </div>
-                                        </div>
-                                    </form>
-        </div>
-=======
                 <form onSubmit={this.AddFlight}>
-                    <div className="row">
-                        <div className="input-field col s10 push-s1 MiInputField">
-                            <input name="Origen" value={this.state.Origen} onChange={this.handleChange} type="text" placeholder="Origen"/>
-                        </div>
-                    </div>
+                    <Input className="col s10 push-s1 select"
+                        s={12} type='select' 
+                        data={this.state.Aeropuertos}
+                        textField="Origen" 
+                        label="Selecciona Aeropuerto" 
+                        defaultValue='Selecciona un Aeropuerto'
+                        id="_id"
+                        onChange={this.handleChange}
+                        value={this.state.Origen}
+                        name="Origen"
+                        >
+                     
+                        {optionItems}
+                  
+                    </Input>
+    
+               
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
                             <input name="Fecha_De_Salida" value={this.state.Fecha_De_Salida} onChange={this.handleChange} type="text" placeholder="Fecha de Salida"/>
@@ -161,7 +142,7 @@ class Flight extends Component{
                     <div className="row">
                         <div className="col s1 push-s9">
                             <button type="submit" className="btn light-blue darken-3" disabled={
-                                !this.state.Origen ||
+                                
                                 !this.state.Fecha_De_Salida||
                                 !this.state.Hora_De_Salida||
                                 !this.state.Destino||
@@ -174,7 +155,6 @@ class Flight extends Component{
                     </div>
                 </form>
             </div>
->>>>>>> 9b0a6f8a0735ae74e9309ff4e70932315e70b140
         )
     }
 }

@@ -7,20 +7,21 @@ import AddUserView from './AddUser';
 import './estilos.css'
 
 
-const KEYS_TO_FILTERS = ['Ap_Name', 'Ap_Country', 'Ap_State']
+const KEYS_TO_FILTERS = ['P_Numero', 'P_UserName', 'P_Date']
 
 
 class Permisos extends Component{
     constructor(props){
         super(props);
         this.state={
-            Ap_Name:'', 
-            Ap_Country:'',
-            Ap_State:'',
-            Ap_City:'',
-            Ap_Address:'',
+            P_Numero:'',
+            P_UserName:'',
+            P_Date:'',
+            P_For_Airports:'',
+            P_For_Flights:'',
+            P_For_Usernames :'',
             _id:'',
-            Aeropuertos:[],
+            Permisos:[],
             searchTerm: '',
             checked:'',
         };
@@ -29,7 +30,7 @@ class Permisos extends Component{
     }
     
     componentDidMount(){
-        this.fetchAirports();
+        this.fetchPermisos();
        
     }
 
@@ -37,17 +38,17 @@ class Permisos extends Component{
         this.setState({ checked });
       }
 
-    fetchAirports(){
-        fetch('http://localhost:3001/api/journeys/Apts/')  
+    fetchPermisos(){
+        fetch('http://localhost:3001/api/journeys/permissions/')  
             .then(res=>res.json())
             .then(data=>{
-                this.setState({Aeropuertos:data});
+                this.setState({Permisos:data});
             });
         }
 
-    DeleteAirport(id){
-        if(window.confirm('Estas seguro de eliminar el aeropuerto')){
-            fetch(`http://localhost:3001/api/journeys/Apts/${id}`,{
+    DeletePermiso(id){
+        if(window.confirm('Estas seguro de eliminar el Usuario')){
+            fetch(`http://localhost:3001/api/journeys/permissions/${id}`,{
                 method:'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -56,14 +57,14 @@ class Permisos extends Component{
             })
             .then(res=>res.json())
             .then(data=>{
-                window.Materialize.toast("Aeropuerto Eliminado");
-                this.fetchAirports();
+                window.Materialize.toast("Permiso Eliminado");
+                this.fetchPermisos();
             });
         }
     }
 
     render(){
-        const filteredAeropuertos = this.state.Aeropuertos.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
+        const filteredPermisos = this.state.Permisos.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
         return(
             [
                 <div className="container">
@@ -81,7 +82,7 @@ class Permisos extends Component{
                                 </Button>
                             }>
                             <AddUserView/> 
-                            {this.fetchAirports()}
+                            {this.fetchPermisos()}
                         </Modal>
                             </Col>
                         </Row>
@@ -96,47 +97,48 @@ class Permisos extends Component{
                                     <th>Aeropuertos</th>
                                     <th>Vuelos</th>
                                     <th>Permisos</th>
-                                    <th>Deshabilitar/Habilitar</th>
+                                    <th>Habilitar</th>
                                 </tr>
                             </thead>
                             <tbody >
         
-        {filteredAeropuertos.map(Aeropuertos => {
+        {filteredPermisos.map(Permisos => {
             return (
-                <tr key={Aeropuertos._id}>
-                                                <td>{Aeropuertos.Ap_Name}</td>
-                                                <td>{Aeropuertos.Ap_Country}</td>
-                                                <td>{Aeropuertos.Ap_State}</td>
+                <tr key={Permisos._id}>
+                                                <td>{Permisos.P_Numero}</td>
+                                                <td>{Permisos.P_UserName}</td>
+                                                <td>{Permisos.P_Date}</td>
                                                 <td>{<Input name='group1' 
                                                     type='checkbox' 
                                                     value='green' 
-                                                    label='A' 
+                                                    label='A'
+                                                    className='filled-in' 
+                                                    defaultValue='checked'
+                                                     
+                                                    
+                                                    onChange={function(e, value){}}/>}</td>
+                                                <td>{<Input name='group2' 
+                                                    type='checkbox' 
+                                                    value='green'  
+                                                    label='V'
                                                     className='filled-in' 
                                                     defaultValue='checked' 
                                                     disabled=''
                                                     onChange={function(e, value){}}/>}</td>
-                                                <td>{<Input name='group1' 
+                                                <td>{<Input name='group3' 
                                                     type='checkbox' 
-                                                    value='green' 
-                                                    label='V' 
+                                                    label='P'
+                                                    value='green'  
                                                     className='filled-in' 
                                                     defaultValue='checked' 
                                                     disabled=''
                                                     onChange={function(e, value){}}/>}</td>
-                                                <td>{<Input name='group1' 
-                                                    type='checkbox' 
-                                                    value='green' 
-                                                    label='P' 
-                                                    className='filled-in' 
-                                                    defaultValue='checked' 
-                                                    disabled=''
-                                                    onChange={function(e, value){}}/>}</td>
-                                                <td>{<label htmlFor={Aeropuertos.checked}>
-        <span>ena/dis</span>
+                                                <td>{<label htmlFor={Permisos.checked}>
+        <span></span>
         <Switch
           onChange={this.handleChange}
-          checked={this.state.Aeropuertos.checked}
-          id={Aeropuertos._id}
+          checked={this.state.Permisos.checked}
+          id={Permisos._id}
         />
       </label> }</td>
 

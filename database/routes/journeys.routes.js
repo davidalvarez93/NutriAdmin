@@ -3,7 +3,7 @@ const router = express.Router();
 
 const airportModel = require('../models/airportsModel');
 const flightModel = require('../models/flightsModel');
-const AdminModel = require('../models/AdminModel');
+const permissionsModel = require('../models/permissionsModel');
 
 router.get('/Apts/', async (req,res)=>{
     const TodosLosAeropuertos = await airportModel.find();
@@ -84,6 +84,50 @@ router.delete('/Flgts/:id', async (req,res)=>{
     res.json({status:'Flight deleted'});
 });
 
-module.exports = router;
 
 /////////////////////////////////
+
+router.get('/Permissions/', async (req,res)=>{
+    const TodosLosPermisos = await permissionsModel.find();
+    res.json(TodosLosPermisos);
+}
+);
+
+router.get('/Permissions/:id', async (req,res)=>{
+    const PermisosPorId = await permissionsModel.findById(req.params.id);
+    res.json(PermisosPorId);
+});
+
+router.post('/Permissions/', async (req,res)=>{
+    const {
+        P_Numero, P_UserName, 
+        P_Date, P_For_Airports, P_For_Flights, 
+        P_For_Usernames
+    } = req.body;
+    const NuevoPermiso = new permissionsModel({
+        P_Numero, P_UserName, 
+        P_Date, P_For_Airports, P_For_Flights, 
+        P_For_Usernames
+    });
+    await NuevoPermiso.save();
+    res.json({status:'Permission saved'});
+});
+
+router.put('/Permissions/:id', async (req,res)=>{
+    const {
+        P_Numero, P_UserName, 
+        P_Date, P_For_Airports, P_For_Flights, 
+        P_For_Usernames
+    } = req.body;
+    const ActualizarPermiso = {
+        P_Numero, P_UserName, 
+        P_Date, P_For_Airports, P_For_Flights, 
+        P_For_Usernames
+    };
+    await permissionsModel.findByIdAndUpdate(req.params.id, ActualizarPermiso);
+    res.json({status:'Permission updated'});
+});
+
+//////////////////////////////
+
+module.exports = router;

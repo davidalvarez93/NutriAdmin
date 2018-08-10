@@ -6,21 +6,22 @@ class Permisos extends Component{
     constructor(){
         super();
         this.state={
-            UserName:'', 
-            Password:'',
-            FechaCreacion:'',
-            Per_Aero:'',
-            Per_Vue:'',
-            Per_Usua:''
+            P_Numero:'',
+            P_UserName:'',
+            P_Date:'',
+            P_For_Airports:'',
+            P_For_Flights:'',
+            P_For_Usernames :'',
+            _id:''
         };
         this.handleChange=this.handleChange.bind(this);
-        this.AddUsuario=this.AddUsuario.bind(this);
+        this.AddPermiso=this.AddPermiso.bind(this);
     }
 
 
-    AddUsuario(e){
+    AddPermiso(e){
         
-        fetch('http://localhost:3001/api/journeys/Apts', {
+        fetch('http://localhost:3001/api/journeys/permissions/', {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers: {
@@ -30,15 +31,16 @@ class Permisos extends Component{
         })
         .then(res=> res.json())
         .then(data => {
-            window.Materialize.toast("Aeropuerto Agregado",4000)
+            window.Materialize.toast("Usuario Agregado",4000)
             this.setState({
-                Ap_Name:'', 
-                Ap_Country:'',
-                Ap_State:'',
-                Ap_City:'',
-                Ap_Address:''
+                P_Numero:'',
+                P_UserName:'',
+                P_Date:'',
+                P_For_Airports:'',
+                P_For_Flights:'',
+                P_For_Usernames :''
             });
-            this.fetchAirports();
+            this.fetchPermisos();
         })
         .catch(err=> console.error(err));
         e.preventDefault();
@@ -56,35 +58,35 @@ class Permisos extends Component{
     render(){
         return(
             <div>
-            <form onSubmit={this.AddUsuario}>
+            <form onSubmit={this.AddPermiso}>
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="UserName" value={this.state.UserName} onChange={this.handleChange} type="text" placeholder="UserName"/>
+                                                <input name="P_Numero" value={this.state.P_Numero} onChange={this.handleChange} type="text" placeholder="Número"/>
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Password" value={this.state.Password} onChange={this.handleChange} type="text" placeholder="Password"/>
+                                                <input name="P_UserName" value={this.state.P_UserName} onChange={this.handleChange} type="text" placeholder="UserName"/>
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="FechaCreacion" value={this.state.FechaCreacion} onChange={this.handleChange}  type="text" placeholder="Fecha de Creación"/>
+                                                <input name="P_Date" value={this.state.P_Date} onChange={this.handleChange}  type="text" placeholder="Fecha de Creación"/>
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Per_Aero" value={this.state.Per_Aero} onChange={this.handleChange}  type="text" placeholder="Fecha de Creación"/>
+                                                <input name="P_For_Airports" value={this.state.P_For_Airports} onChange={this.handleChange}  type="text" placeholder="Permiso Aeropuertos"/>
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Per_Vue" value={this.state.Per_Vue} onChange={this.handleChange}  type="text" placeholder="Fecha de Creación"/>
+                                                <input name="P_For_Flights" value={this.state.P_For_Flights} onChange={this.handleChange}  type="text" placeholder="Permiso Vuelos"/>
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="Per_Usua" value={this.state.Per_Usua} onChange={this.handleChange}  type="text" placeholder="Fecha de Creación"/>
+                                                <input name="P_For_Usernames" value={this.state.P_For_Usernames} onChange={this.handleChange}  type="text" placeholder="Permiso Usuarios"/>
                                             </div>
                                         </div>
                                         
