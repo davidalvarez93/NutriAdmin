@@ -1,5 +1,6 @@
 
 import React, {Component } from 'react';
+import {Input} from 'react-materialize';
 
 import './estilos.css'
 
@@ -7,24 +8,36 @@ class Airport extends Component{
     constructor(){
         super();
         this.state={
-            Origen:'', 
-            Fecha_De_Salida:'',
-            Hora_De_Salida:'',
-            Destino:'',
-            Fecha_De_Llegada:'',
-            Hora_De_Llegada:'',
-            Capacidad:'',
-            Precio:'',
+            Ap_Name:'',
+            Ap_Country:'',
+            Origen: '',
+            Fecha_De_Salida: '',
+            Hora_De_Salida: '',
+            Destino: '',
+            Fecha_De_Llegada: '',
+            Hora_De_Llegada: '',
+            Capacidad: '',
+            Precio: '',
+            Aeropuertos:[],
             _id:''
         };
         this.handleChange=this.handleChange.bind(this);
     }
 
     componentDidMount(){
-        this.fetchAirport();
+        this.fetchFlights();
+        this.fetchAirports();
     }
 
-    fetchAirport(){
+    fetchAirports(){
+        fetch('http://localhost:3001/api/journeys/Apts/')  
+            .then(res=>res.json())
+            .then(data=>{
+                this.setState({Aeropuertos:data});
+            });
+    }
+
+    fetchFlights(){
         fetch(`http://localhost:3001/api/journeys/Flgts/${this.props.IdFromParent}`)
         .then(res=>res.json())
         .then(data=>{
@@ -65,13 +78,25 @@ class Airport extends Component{
     }
 
     render(){
+        let optionItems = this.state.Aeropuertos.map((Aeropuerto) =>
+        <option key={Aeropuerto._id}>{Aeropuerto.Ap_Name}</option>
+    );
         return(
             <div>
-                <div className="row">
-                    <div className="input-field col s10 push-s1 MiInputField">
-                        <input name="Origen" value={this.state.Origen} onChange={this.handleChange} type="text" placeholder="Origen"/>
-                    </div>
-                </div>
+                <Input className="col s10 push-s1 select2"
+                        s={12} type='select' 
+                        data={this.state.Aeropuertos}
+                        textField="Origen" 
+                        defaultValue='Selecciona un Aeropuerto'
+                        id="_id"
+                        onChange={this.handleChange}
+                        value={this.state.Origen}
+                        name="Origen"
+                        >
+                     
+                        {optionItems}
+                  
+                    </Input>
                 <div className="row">
                     <div className="input-field col s10 push-s1 MiInputField">
                         <input name="Fecha_Salida" value={this.state.Fecha_De_Salida} onChange={this.handleChange} type="text" placeholder="Fecha De Salida"/>
@@ -82,11 +107,20 @@ class Airport extends Component{
                         <input name="Hora_Salida" value={this.state.Hora_De_Salida} onChange={this.handleChange}  type="text" placeholder="Hora De Salida"/>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="input-field col s10 push-s1 MiInputField">
-                        <input name="Destino" value={this.state.Destino} onChange={this.handleChange}  type="text" placeholder="Destino"/>
-                    </div>
-                </div>
+                <Input className="col s10 push-s1 select2"
+                        s={12} type='select' 
+                        data={this.state.Aeropuertos}
+                        textField="Destino" 
+                        defaultValue='Selecciona un Aeropuerto'
+                        id="_id"
+                        onChange={this.handleChange}
+                        value={this.state.Destino}
+                        name="Destino"
+                        >
+                     
+                        {optionItems}
+                  
+                    </Input>
                 <div className="row">
                     <div className="input-field col s10 push-s1 MiInputField">
                         <input name="Fecha_Llegada" value={this.state.Fecha_De_Llegada} onChange={this.handleChange}  type="text" placeholder="Fecha De Llegada"/>

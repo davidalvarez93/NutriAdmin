@@ -81,8 +81,7 @@ class Flight extends Component{
         let optionItems = this.state.Aeropuertos.map((Aeropuerto) =>
         <option key={Aeropuerto._id}>{Aeropuerto.Ap_Name}</option>
     );
-         
- 
+          
         return(
             <div>
                 <form onSubmit={this.AddFlight}>
@@ -90,7 +89,6 @@ class Flight extends Component{
                         s={12} type='select' 
                         data={this.state.Aeropuertos}
                         textField="Origen" 
-                        label="Selecciona Aeropuerto" 
                         defaultValue='Selecciona un Aeropuerto'
                         id="_id"
                         onChange={this.handleChange}
@@ -113,11 +111,20 @@ class Flight extends Component{
                             <input name="Hora_De_Salida" value={this.state.Hora_De_Salida} onChange={this.handleChange}  type="text" placeholder="Hora de Salida"/>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="input-field col s10 push-s1 MiInputField">
-                            <input name="Destino" value={this.state.Destino} onChange={this.handleChange}  type="text" placeholder="Destino"/>
-                        </div>
-                    </div>
+                    <Input className="col s10 push-s1 select"
+                        s={12} type='select' 
+                        data={this.state.Aeropuertos}
+                        textField="Destino" 
+                        defaultValue='Selecciona un Aeropuerto'
+                        id="_id"
+                        onChange={this.handleChange}
+                        value={this.state.Destino}
+                        name="Destino"
+                        >
+                     
+                        {optionItems}
+                  
+                    </Input>
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
                             <input name="Fecha_De_Llegada" value={this.state.Fecha_De_Llegada} onChange={this.handleChange}  type="text" placeholder="Fecha de Llegada"/>
@@ -142,7 +149,7 @@ class Flight extends Component{
                     <div className="row">
                         <div className="col s1 push-s9">
                             <button type="submit" className="btn light-blue darken-3" disabled={
-                                
+                                !this.state.Origen||
                                 !this.state.Fecha_De_Salida||
                                 !this.state.Hora_De_Salida||
                                 !this.state.Destino||
