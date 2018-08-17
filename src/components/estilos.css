@@ -9,16 +9,19 @@
   position: relative;
 }
 .select {
-  
-  width: 490px;
-  margin: 50px auto 10px;
+  height: 20px;
+  width: 80%;
+  margin: 5px auto 10px;
   background: center;
 }
-.select2 {
-  width: 558px;
-  margin: 50px auto 10px;
+
+.selectAdd{
+  height: 20px;
+  width: 80%;
+  margin: 30px auto 10px;
   background: center;
 }
+
 .MiFooter {
   height: 40px;
 }
@@ -28,8 +31,21 @@
   height: 50px;
 }
 
+.DatePicker{
+  height: 20px;
+  width: 80%;
+  
+
+}
+
 .MiInputField{
   height: 20px;
+  
+
+}
+
+.EditField{
+  height: 10px;
 }
 
 .MiModal { width: 50%  ;  min-height: 74%}

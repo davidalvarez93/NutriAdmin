@@ -102,12 +102,12 @@ router.post('/Permissions/', async (req,res)=>{
     const {
         P_Numero, P_UserName, 
         P_Date, P_For_Airports, P_For_Flights, 
-        P_For_Usernames
+        P_For_Usernames, status
     } = req.body;
     const NuevoPermiso = new permissionsModel({
         P_Numero, P_UserName, 
         P_Date, P_For_Airports, P_For_Flights, 
-        P_For_Usernames
+        P_For_Usernames, status
     });
     await NuevoPermiso.save();
     res.json({status:'Permission saved'});
@@ -117,12 +117,12 @@ router.put('/Permissions/:id', async (req,res)=>{
     const {
         P_Numero, P_UserName, 
         P_Date, P_For_Airports, P_For_Flights, 
-        P_For_Usernames
+        P_For_Usernames, status
     } = req.body;
     const ActualizarPermiso = {
         P_Numero, P_UserName, 
         P_Date, P_For_Airports, P_For_Flights, 
-        P_For_Usernames
+        P_For_Usernames, status
     };
     await permissionsModel.findByIdAndUpdate(req.params.id, ActualizarPermiso);
     res.json({status:'Permission updated'});

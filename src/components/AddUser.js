@@ -33,6 +33,7 @@ class Permisos extends Component{
         .then(data => {
             window.Materialize.toast("Usuario Agregado",4000)
             this.setState({
+                status:'',
                 P_Numero:'',
                 P_UserName:'',
                 P_Date:'',
@@ -61,7 +62,7 @@ class Permisos extends Component{
             <form onSubmit={this.AddPermiso}>
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="P_Numero" value={this.state.P_Numero} onChange={this.handleChange} type="text" placeholder="Número"/>
+                                                <input name="P_Numero" value={this.state.P_Numero} onChange={this.handleChange} type="number" placeholder="Número"/>
                                             </div>
                                         </div>
                                         <div className="row">
@@ -71,7 +72,7 @@ class Permisos extends Component{
                                         </div>
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
-                                                <input name="P_Date" value={this.state.P_Date} onChange={this.handleChange}  type="text" placeholder="Fecha de Creación"/>
+                                                <input name="P_Date" value={this.state.P_Date} onChange={this.handleChange}  type="date" placeholder="Fecha de Creación"/>
                                             </div>
                                         </div>
                                         <div className="row">
@@ -87,6 +88,11 @@ class Permisos extends Component{
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
                                                 <input name="P_For_Usernames" value={this.state.P_For_Usernames} onChange={this.handleChange}  type="text" placeholder="Permiso Usuarios"/>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="input-field col s10 push-s1 MiInputField">
+                                                <input name="status" value={this.state.status} onChange={this.handleChange}  type="text" placeholder="Status"/>
                                             </div>
                                         </div>
                                         

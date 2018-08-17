@@ -1,6 +1,6 @@
 
 import React, {Component } from 'react';
-import {Input} from 'react-materialize';
+import {Input, Row} from 'react-materialize';
 
 import './estilos.css'
 
@@ -83,7 +83,12 @@ class Airport extends Component{
     );
         return(
             <div>
-                <Input className="col s10 push-s1 select2"
+                <div className="row">
+                <label className="col s3">
+                    Origen
+                </label>
+                <Input
+                className="col s10 push-s1 select"
                         s={12} type='select' 
                         data={this.state.Aeropuertos}
                         textField="Origen" 
@@ -97,17 +102,27 @@ class Airport extends Component{
                         {optionItems}
                   
                     </Input>
-                <div className="row">
-                    <div className="input-field col s10 push-s1 MiInputField">
-                        <input name="Fecha_Salida" value={this.state.Fecha_De_Salida} onChange={this.handleChange} type="text" placeholder="Fecha De Salida"/>
-                    </div>
+                    <Row>
+                    </Row>    
                 </div>
                 <div className="row">
-                    <div className="input-field col s10 push-s1 MiInputField">
-                        <input name="Hora_Salida" value={this.state.Hora_De_Salida} onChange={this.handleChange}  type="text" placeholder="Hora De Salida"/>
-                    </div>
+                <label className="col s3">
+                    Fecha Salida
+                </label>
+                        <input className="input-field col s10 push-s1 MiInputField" name="Fecha_Salida" value={this.state.Fecha_De_Salida} onChange={this.handleChange} type="date" placeholder="Fecha De Salida"/>
+                    
                 </div>
-                <Input className="col s10 push-s1 select2"
+                <div className="row">
+                    <label className="col s3">
+                        Hora Salida
+                    </label>
+                        <input className="input-field col s10 push-s1 MiInputField" name="Hora_Salida" value={this.state.Hora_De_Salida} onChange={this.handleChange}  type="time" placeholder="Hora De Salida"/>
+                </div>
+                <Row>
+                <label className="col s3">
+                    Destino
+                </label>
+                <Input className="col s10 push-s1 select"
                         s={12} type='select' 
                         data={this.state.Aeropuertos}
                         textField="Destino" 
@@ -119,27 +134,38 @@ class Airport extends Component{
                         >
                      
                         {optionItems}
-                  
+                
                     </Input>
+                    </Row>
+                    <Row>
+                        </Row>
                 <div className="row">
-                    <div className="input-field col s10 push-s1 MiInputField">
-                        <input name="Fecha_Llegada" value={this.state.Fecha_De_Llegada} onChange={this.handleChange}  type="text" placeholder="Fecha De Llegada"/>
-                    </div>
+                    <label className="col s3">
+                        Fecha Llegada
+                    </label>
+                        <input className="input-field col s10 push-s1 MiInputField" name="Fecha_Llegada" value={this.state.Fecha_De_Llegada} onChange={this.handleChange}  type="date" placeholder="Fecha De Llegada"/>
+                    
                 </div>
                 <div className="row">
-                    <div className="input-field col s10 push-s1 MiInputField">
-                        <input name="Hora_Llegada" value={this.state.Hora_De_Llegada} onChange={this.handleChange}  type="text" placeholder="Hora De Llegada"/>
-                    </div>
+                    <label className="col s3">
+                        Hora Llegada
+                    </label>
+                        <input className="input-field col s10 push-s1 MiInputField" name="Hora_Llegada" value={this.state.Hora_De_Llegada} onChange={this.handleChange}  type="time" placeholder="Hora De Llegada"/>
+                    
                 </div>
                 <div className="row">
-                    <div className="input-field col s10 push-s1 MiInputField">
-                        <input name="Capacidad" value={this.state.Capacidad} onChange={this.handleChange}  type="text" placeholder="Capacidad"/>
-                    </div>
+                    <label className="col s3">
+                        Capacidad
+                    </label>
+                        <input className="input-field col s10 push-s1 MiInputField" name="Capacidad" value={this.state.Capacidad} onChange={this.handleChange}  type="number" placeholder="Capacidad"/>
+                    
                 </div>
                 <div className="row">
-                    <div className="input-field col s10 push-s1 MiInputField">
-                        <input name="Precio" value={this.state.Precio} onChange={this.handleChange}  type="text" placeholder="Precio"/>
-                    </div>
+                    <label className="col s3">
+                        Precio
+                    </label>
+                        <input className="input-field col s10 push-s1 MiInputField" name="Precio" value={this.state.Precio} onChange={this.handleChange}  type="number" placeholder="Precio"/>
+                    
                 </div>
                 <div className="row"></div>
                 <div className="row">

@@ -1,6 +1,5 @@
 
 import React, {Component } from 'react';
-
 import './estilos.css'
 
 class Airport extends Component{
@@ -61,17 +60,17 @@ class Airport extends Component{
                 <form onSubmit={this.AddAirport}>
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
-                            <input name="Ap_Name" value={this.state.Ap_Name} onChange={this.handleChange} type="text" placeholder="Nombre de Aeropuerto"/>
+                        <input  name="Ap_Name" value={this.state.Ap_Name}  onChange={this.handleChange} type="text" placeholder="Nombre de Aeropuerto"/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
-                            <input name="Ap_Country" value={this.state.Ap_Country} onChange={this.handleChange} type="text" placeholder="Pais"/>
+                            <input name="Ap_Country" value={this.state.Ap_Country}  onChange={this.handleChange} type="text" placeholder="Pais"/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
-                            <input name="Ap_State" value={this.state.Ap_State} onChange={this.handleChange}  type="text" placeholder="Estado"/>
+                            <input name="Ap_State" value={this.state.Ap_State}  onChange={this.handleChange}  type="text" placeholder="Estado"/>
                         </div>
                     </div>
                     <div className="row">

@@ -31,6 +31,7 @@ class Airport extends Component{
             Capacidad:'',
             Precio:'',
             Vuelos:[],
+            offset: 0,
             searchTerm:''
         };
         this.searchUpdated = this.searchUpdated.bind(this)
@@ -47,6 +48,7 @@ class Airport extends Component{
                 this.setState({Vuelos:data});
             });
     }
+    
 
     DeleteFlights(id){
         if(window.confirm('Estas seguro de eliminar el aeropuerto')){

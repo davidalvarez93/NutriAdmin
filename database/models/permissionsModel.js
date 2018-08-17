@@ -7,7 +7,8 @@ let PermissionsSchema = new Schema({
     P_Date:{type:Date, requiered:true,},
     P_For_Airports:{type:Boolean, requiered:true,},
     P_For_Flights:{type:Boolean, required:true},
-    P_For_Usernames : {type:Boolean, required:true}
+    P_For_Usernames : {type:Boolean, required:true},
+    status : {type:Boolean, required:true}
 });
 
 

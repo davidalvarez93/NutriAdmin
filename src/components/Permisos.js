@@ -19,7 +19,8 @@ class Permisos extends Component{
             P_Date:'',
             P_For_Airports:'',
             P_For_Flights:'',
-            P_For_Usernames :'',
+            P_For_Usernames:'',
+            status:'',
             _id:'',
             Permisos:[],
             searchTerm: '',
@@ -27,25 +28,47 @@ class Permisos extends Component{
         };
         this.handleChange = this.handleChange.bind(this);
         this.searchUpdated = this.searchUpdated.bind(this);
+
     }
     
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-    
-        this.setState({
-          [name]: value
+    SendChanges(){
+        var id="";
+        this.state.Permisos.forEach(element => {
+            id = element["_id"]
+            console.log(id);
+            this.GuardarCambios(id);
         });
-      }
+    }
+
+      GuardarCambios(id){
+        fetch(`http://localhost:3001/api/journeys/permissions/${id}`,{
+            method: 'PUT',
+            body: JSON.stringify(this.state),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {console.log(data)
+        window.Materialize.toast("Permisos Actualizado",900,"light-blue darken-3")
+        });
+    }
 
     componentDidMount(){
         this.fetchPermisos();
        
     }
 
-    handleChange(checked) {
-        this.setState({ checked });
+    handleChange(id,namePermiso) {
+       this.state.Permisos.forEach(element => {
+           if(element["_id"]==id){
+               element[namePermiso]=!element[namePermiso];
+               console.log(element);
+           }
+       });
+       console.log(this.state.Permisos);
+
       }
 
     fetchPermisos(){
@@ -53,6 +76,7 @@ class Permisos extends Component{
             .then(res=>res.json())
             .then(data=>{
                 this.setState({Permisos:data});
+                console.log(this.state.Permisos);
             });
         }
 
@@ -73,29 +97,54 @@ class Permisos extends Component{
         }
     }
 
+    componentWillUnmount(){
+        console.log("modal unmountd")
+    }
+
     render(){
+        let base1 = this.state.Permisos.map((Permiso) =>
+        <option key={Permiso._id}>{Permiso.P_For_Airports}</option>
+        );
+        let base2 = this.state.Permisos.map((Permiso) =>
+        <option key={Permiso._id}>{Permiso.P_For_Flights}</option>
+        );
+        let base3 = this.state.Permisos.map((Permiso) =>
+        <option key={Permiso._id}>{Permiso.P_For_Usernames}</option>
+        );
+
         const filteredPermisos = this.state.Permisos.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
         return(
             [
                 <div className="container">
-                <div className="section">
-                <div>
-        <Row>
-        <SearchInput  style={{width: "400px",position: "relative", padding: "10px 10px",
-  height: "15px", lenght: "400px"}} 
-        className="col s6 search-input light-blue darken-3" onChange={this.searchUpdated} />
-            <Col className="col s5 push-s1 ">
-                        <Modal header="Agregar nuevo Usuario" className="MiModal center"
-                            trigger={
-                                <Button className="waves-effect waves-light light-blue darken-3">
-                                    Agregar Usuario Admin
-                                </Button>
-                            }>
-                            <AddUserView/> 
-                            {this.fetchPermisos()}
-                        </Modal>
-                            </Col>
-                        </Row>
+                    <div className="section">
+                        <div>
+                            <Row>
+                                <Col className="s6">
+                                    <SearchInput className="search-input light-blue darken-3 MiSearchBar valign-wrapper" onChange={this.searchUpdated} />
+                                </Col>
+                                <Col><Button flat style={{padding:" 10px 15px"}} disabled/></Col>
+                                <Col className="s4 push-s2 ">
+                                    <Modal header="Agregar Usuario" className="MiModal center"
+                                    fixedFooter
+                                    actions={
+                                        <div>
+                                            <Button flat style={{padding:" 10px 15px"}} disabled/>
+                                            <Button modal="close" className="btn light-blue darken-3" >Cerrar  </Button>
+                                        </div>
+                                    }
+                                    modalOptions={{
+                                        dismissible:false,
+                                        complete:()=>this.fetchPermisos(),
+                                    }}
+                                    trigger={
+                                        <Button className="waves-effect waves-light light-blue darken-3">
+                                            Agregar Usuario
+                                        </Button>
+                                    }>
+                                        <AddUserView/>
+                                    </Modal>
+                                </Col>
+                            </Row>
         <div className="row">
                     <div className="col s12 ">
                         <table className=" highlight">
@@ -115,47 +164,57 @@ class Permisos extends Component{
         {filteredPermisos.map(Permisos => {
             return (
                 <tr key={Permisos._id}>
-                                                <td>{Permisos.P_Numero}</td>
-                                                <td>{Permisos.P_UserName}</td>
-                                                <td>{Permisos.P_Date}</td>
-                                                <td>{<Input name='group1' 
-                                                    type='checkbox' 
-                                                    value='green' 
-                                                    label='A'
-                                                    className='filled-in' 
-                                                    defaultValue='checked'
-                                                    onChange={function(e, value){}}/>}</td>
-                                                <td>{<Input name='group2' 
-                                                    type='checkbox' 
-                                                    value='green'  
-                                                    label='V'
-                                                    className='filled-in' 
-                                                    defaultValue='checked' 
-                                                    disabled=''
-                                                    onChange={function(e, value){}}/>}</td>
-                                                <td>{<Input name='group3' 
-                                                    type='checkbox' 
-                                                    label='P'
-                                                    value='green'  
-                                                    className='filled-in' 
-                                                    defaultValue='checked' 
-                                                    disabled=''
-                                                    onChange={function(e, value){}}/>}</td>
-                                                <td>{<label htmlFor={Permisos.checked}>
-        <span></span>
-        <Switch
-          onChange={this.handleChange}
-          checked={this.state.Permisos.checked}
-          id={Permisos._id}
-        />
-      </label> }</td>
+                    <td>{Permisos.P_Numero}</td>
+                    <td>{Permisos.P_UserName}</td>
+                    <td>{Permisos.P_Date}</td>
+                    <td>{<Input name='group1' 
+                            type='checkbox' 
+                            id={"airports"+Permisos._id}
+                            value="Permisos.P_For_Airports"
+                            label='A'
+                            className='filled-in' 
+                            onChange={(e)=>this.handleChange(Permisos._id,"P_For_Airports")}
+                            checked={Permisos.P_For_Airports}
+                        />}
+                    </td>
+                    <td>{<Input name='group2' 
+                            type='checkbox' 
+                            id={"flights"+Permisos._id}
+                            value='base2'  
+                            label='V'
+                            className='filled-in' 
+                            onChange={(e)=>this.handleChange(Permisos._id,"P_For_Flights")}
+                            checked={Permisos.P_For_Flights}
+                        />}
+                    </td>
+                    <td>{<Input name='group3' 
+                            type='checkbox' 
+                            id={"users"+Permisos._id}
+                            label='P'
+                            value='base3'  
+                            className='filled-in' 
+                            onChange={(e)=>this.handleChange(Permisos._id,"P_For_Usernames")}
+                            checked={Permisos.P_For_Usernames}
+                        />}
+                    </td>
+                    <td>{<Input
+                            name="group4"
+                            type="switch"
+                            value="Permisos.status"
+                            onChange={this.handleChange(Permisos._id,"status")}
+                            checked={Permisos.status}
+                            id={"estado"+Permisos._id}
+                        />}
+                    </td>
 
-                                            </tr>
-          )
+                </tr>
+            )
         })
         }
          </tbody>
                         </table>
+                        
+                        <Row>
                         <ul class="pagination center">
                             <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                             <li class="active"><a href="#!">1</a></li>
@@ -165,6 +224,12 @@ class Permisos extends Component{
                             <li class="waves-effect"><a href="#!">5</a></li>
                             <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                         </ul>
+                        </Row>
+                        <Row>
+                        <button onClick={()=>{this.SendChanges()}}  className="btn light-blue darken-3 large right">
+                                            Guardar Cambios
+                        </button>
+                        </Row>
                         </div>
                         </div>
                     </div>

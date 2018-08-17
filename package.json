@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^1.5.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "materialize-css": "^1.0.0-rc.2",
@@ -10,6 +11,8 @@
     "morgan": "^1.9.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
+    "react-addons-update": "^15.6.2",
+    "react-datepicker": "^1.6.0",
     "react-dropdown": "^1.5.0",
     "react-express": "^0.2.0",
     "react-materialize": "^2.3.3",

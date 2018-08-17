@@ -1,5 +1,6 @@
 import React, {Component } from 'react';
-import {Dropdow, Button, NavItem ,Input} from 'react-materialize';
+import {Input} from 'react-materialize';
+
 
 import './estilos.css'
 
@@ -13,10 +14,10 @@ class Flight extends Component{
             Ap_Name:'',
             Ap_Country:'',
             Origen: '',
-            Fecha_De_Salida: '',
+            Fecha_De_Salida:'',
             Hora_De_Salida: '',
             Destino: '',
-            Fecha_De_Llegada: '',
+            Fecha_De_Llegada:'',
             Hora_De_Llegada: '',
             Capacidad: '',
             Precio: '',
@@ -24,6 +25,7 @@ class Flight extends Component{
             _id:''
         };
         this.handleChange=this.handleChange.bind(this);
+        this.DateChange=this.DateChange.bind(this);
         this.AddFlight=this.AddFlight.bind(this);
     }
 
@@ -68,13 +70,43 @@ class Flight extends Component{
         .catch(err=> console.error(err));
         e.preventDefault();
     }
-    
+
+      DateChange(date) {
+    this.setState({
+      Fecha_De_Salida: date
+    });
+  }
+
+  DateChange2(date) {
+    this.setState({
+      Fecha_De_Llegada: date
+    });
+  }
 
     handleChange(e){
         const {name, value} = e.target;
         this.setState({
             [name]: value
         });
+    }
+
+    valideKey(evt)
+    {
+        var code = (evt.which) ? evt.which : evt.keyCode;
+        if(code==8) 
+        {
+            //backspace
+            return true;
+        }
+        else if(code>=48 && code<=57) 
+        {
+            //is a number
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     render(){
@@ -85,7 +117,7 @@ class Flight extends Component{
         return(
             <div>
                 <form onSubmit={this.AddFlight}>
-                    <Input className="col s10 push-s1 select"
+                    <Input className="col s10 push-s1 selectAdd"
                         s={12} type='select' 
                         data={this.state.Aeropuertos}
                         textField="Origen" 
@@ -103,15 +135,20 @@ class Flight extends Component{
                
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
-                            <input name="Fecha_De_Salida" value={this.state.Fecha_De_Salida} onChange={this.handleChange} type="text" placeholder="Fecha de Salida"/>
+                            <input 
+                            type='date' 
+                            name="Fecha_De_Salida" 
+                            value={this.state.Fecha_De_Salida} 
+                            onChange={this.handleChange} 
+                            placeholder="Fecha de Salida"/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
-                            <input name="Hora_De_Salida" value={this.state.Hora_De_Salida} onChange={this.handleChange}  type="text" placeholder="Hora de Salida"/>
+                            <input name="Hora_De_Salida" value={this.state.Hora_De_Salida} onChange={this.handleChange}  type="time" placeholder="Hora de Salida"/>
                         </div>
                     </div>
-                    <Input className="col s10 push-s1 select"
+                    <Input className="col s10 push-s1 selectAdd"
                         s={12} type='select' 
                         data={this.state.Aeropuertos}
                         textField="Destino" 
@@ -127,22 +164,27 @@ class Flight extends Component{
                     </Input>
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
-                            <input name="Fecha_De_Llegada" value={this.state.Fecha_De_Llegada} onChange={this.handleChange}  type="text" placeholder="Fecha de Llegada"/>
+                        <input 
+                            type='date' 
+                            name="Fecha_De_Llegada" 
+                            value={this.state.Fecha_De_Llegada} 
+                            onChange={this.handleChange} 
+                            placeholder="Fecha de Llegada"/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
-                            <input name="Hora_De_Llegada" value={this.state.Hora_De_Llegada} onChange={this.handleChange} type="text" placeholder="Hora de Llegada"/>
+                            <input name="Hora_De_Llegada" value={this.state.Hora_De_Llegada} onChange={this.handleChange} type="time" placeholder="Hora de Llegada"/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
-                            <input name="Capacidad" value={this.state.Capacidad} onChange={this.handleChange} type="text" placeholder="Capacidad"/>
+                            <input name="Capacidad" value={this.state.Capacidad} onChange={this.handleChange} type="number" placeholder="Capacidad"/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s10 push-s1 MiInputField">
-                            <input name="Precio" value={this.state.Precio} onChange={this.handleChange} type="text" placeholder="Precio"/>
+                            <input name="Precio" value={this.state.Precio} onChange={this.handleChange} type="number" placeholder="Precio"/>
                         </div>
                     </div>
                     <div className="row"></div>
