@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^1.5.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "materialize-css": "^1.0.0-rc.2",
@@ -10,13 +11,17 @@
     "morgan": "^1.9.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react-addons-update": "^15.6.2",
+    "react-datepicker": "^1.6.0",
+    "react-dropdown": "^1.5.0",
     "react-express": "^0.2.0",
     "react-materialize": "^2.3.3",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "react-search-input": "^0.11.3"
+    "react-search-input": "^0.11.3",
+    "react-switch": "^3.0.4",
+    "react-widgets": "^4.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -26,6 +31,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "react-dom": "^16.4.2"
   }
 }

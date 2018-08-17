@@ -8,7 +8,20 @@
   height: 52px;
   position: relative;
 }
-  
+.select {
+  height: 20px;
+  width: 80%;
+  margin: 5px auto 10px;
+  background: center;
+}
+
+.selectAdd{
+  height: 20px;
+  width: 80%;
+  margin: 30px auto 10px;
+  background: center;
+}
+
 .MiFooter {
   height: 40px;
 }
@@ -18,11 +31,32 @@
   height: 50px;
 }
 
+.DatePicker{
+  height: 20px;
+  width: 80%;
+  
+
+}
+
 .MiInputField{
   height: 20px;
+  
+
+}
+
+.EditField{
+  height: 10px;
 }
 
 .MiModal { width: 50%  ;  min-height: 74%}
 .MiModalVuelo { width: 50%  ;  min-height: 80%}
 
 .MiTabla{ height: 5px;}
+
+.MiSearchBar{
+  width: "400px";
+  position: "relative";
+  padding: "10px 10px";
+  height: "15px";
+  
+}

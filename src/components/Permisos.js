@@ -1,46 +1,88 @@
 import React, {Component } from 'react';
-import { Modal, Button, Row, Col} from 'react-materialize';
-import SearchInput, {createFilter} from 'react-search-input'
+import { Modal, Button, Row, Col, Input} from 'react-materialize';
+import SearchInput, {createFilter} from 'react-search-input';
+import Switch from "react-switch";
 import AddUserView from './AddUser';
 
 import './estilos.css'
 
 
-const KEYS_TO_FILTERS = ['Ap_Name', 'Ap_Country', 'Ap_State']
+const KEYS_TO_FILTERS = ['P_Numero', 'P_UserName', 'P_Date']
 
 
 class Permisos extends Component{
     constructor(props){
         super(props);
         this.state={
-            Ap_Name:'', 
-            Ap_Country:'',
-            Ap_State:'',
-            Ap_City:'',
-            Ap_Address:'',
+            P_Numero:'',
+            P_UserName:'',
+            P_Date:'',
+            P_For_Airports:'',
+            P_For_Flights:'',
+            P_For_Usernames:'',
+            status:'',
             _id:'',
-            Aeropuertos:[],
-            searchTerm: ''
+            Permisos:[],
+            searchTerm: '',
+            checked:'',
         };
-        this.searchUpdated = this.searchUpdated.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.searchUpdated = this.searchUpdated.bind(this);
+
     }
     
+    SendChanges(){
+        var id="";
+        this.state.Permisos.forEach(element => {
+            id = element["_id"]
+            console.log(id);
+            this.GuardarCambios(id);
+        });
+    }
+
+      GuardarCambios(id){
+        fetch(`http://localhost:3001/api/journeys/permissions/${id}`,{
+            method: 'PUT',
+            body: JSON.stringify(this.state),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {console.log(data)
+        window.Materialize.toast("Permisos Actualizado",900,"light-blue darken-3")
+        });
+    }
+
     componentDidMount(){
-        this.fetchAirports();
+        this.fetchPermisos();
        
     }
 
-    fetchAirports(){
-        fetch('http://localhost:3001/api/journeys/Apts/')  
+    handleChange(id,namePermiso) {
+       this.state.Permisos.forEach(element => {
+           if(element["_id"]==id){
+               element[namePermiso]=!element[namePermiso];
+               console.log(element);
+           }
+       });
+       console.log(this.state.Permisos);
+
+      }
+
+    fetchPermisos(){
+        fetch('http://localhost:3001/api/journeys/permissions/')  
             .then(res=>res.json())
             .then(data=>{
-                this.setState({Aeropuertos:data});
+                this.setState({Permisos:data});
+                console.log(this.state.Permisos);
             });
         }
 
-    DeleteAirport(id){
-        if(window.confirm('Estas seguro de eliminar el aeropuerto')){
-            fetch(`http://localhost:3001/api/journeys/Apts/${id}`,{
+    DeletePermiso(id){
+        if(window.confirm('Estas seguro de eliminar el Usuario')){
+            fetch(`http://localhost:3001/api/journeys/permissions/${id}`,{
                 method:'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -49,35 +91,60 @@ class Permisos extends Component{
             })
             .then(res=>res.json())
             .then(data=>{
-                window.Materialize.toast("Aeropuerto Eliminado");
-                this.fetchAirports();
+                window.Materialize.toast("Permiso Eliminado");
+                this.fetchPermisos();
             });
         }
     }
 
+    componentWillUnmount(){
+        console.log("modal unmountd")
+    }
+
     render(){
-        const filteredAeropuertos = this.state.Aeropuertos.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
+        let base1 = this.state.Permisos.map((Permiso) =>
+        <option key={Permiso._id}>{Permiso.P_For_Airports}</option>
+        );
+        let base2 = this.state.Permisos.map((Permiso) =>
+        <option key={Permiso._id}>{Permiso.P_For_Flights}</option>
+        );
+        let base3 = this.state.Permisos.map((Permiso) =>
+        <option key={Permiso._id}>{Permiso.P_For_Usernames}</option>
+        );
+
+        const filteredPermisos = this.state.Permisos.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
         return(
             [
                 <div className="container">
-                <div className="section">
-                <div>
-        <Row>
-        <SearchInput  style={{width: "400px",position: "relative", padding: "10px 10px",
-  height: "15px", lenght: "400px"}} 
-        className="col s6 search-input light-blue darken-3" onChange={this.searchUpdated} />
-            <Col className="col s5 push-s1 ">
-                        <Modal header="Agregar nuevo Usuario" className="MiModal center"
-                            trigger={
-                                <Button className="waves-effect waves-light light-blue darken-3">
-                                    Agregar Usuario Admin
-                                </Button>
-                            }>
-                            <AddUserView/> 
-                            {this.fetchAirports()}
-                        </Modal>
-                            </Col>
-                        </Row>
+                    <div className="section">
+                        <div>
+                            <Row>
+                                <Col className="s6">
+                                    <SearchInput className="search-input light-blue darken-3 MiSearchBar valign-wrapper" onChange={this.searchUpdated} />
+                                </Col>
+                                <Col><Button flat style={{padding:" 10px 15px"}} disabled/></Col>
+                                <Col className="s4 push-s2 ">
+                                    <Modal header="Agregar Usuario" className="MiModal center"
+                                    fixedFooter
+                                    actions={
+                                        <div>
+                                            <Button flat style={{padding:" 10px 15px"}} disabled/>
+                                            <Button modal="close" className="btn light-blue darken-3" >Cerrar  </Button>
+                                        </div>
+                                    }
+                                    modalOptions={{
+                                        dismissible:false,
+                                        complete:()=>this.fetchPermisos(),
+                                    }}
+                                    trigger={
+                                        <Button className="waves-effect waves-light light-blue darken-3">
+                                            Agregar Usuario
+                                        </Button>
+                                    }>
+                                        <AddUserView/>
+                                    </Modal>
+                                </Col>
+                            </Row>
         <div className="row">
                     <div className="col s12 ">
                         <table className=" highlight">
@@ -88,34 +155,66 @@ class Permisos extends Component{
                                     <th>Fecha de Creación</th>
                                     <th>Aeropuertos</th>
                                     <th>Vuelos</th>
-                                    <th>Usuarios</th>
-                                    <th></th>
+                                    <th>Permisos</th>
+                                    <th>Habilitar</th>
                                 </tr>
                             </thead>
                             <tbody >
         
-        {filteredAeropuertos.map(Aeropuertos => {
-          return (
-<tr key={Aeropuertos._id}>
-                                                <td>{Aeropuertos.Ap_Name}</td>
-                                                <td>{Aeropuertos.Ap_Country}</td>
-                                                <td>{Aeropuertos.Ap_State}</td>
-                                                <td>{Aeropuertos.Ap_City}</td>
-                                                <td>{Aeropuertos.Ap_Address}</td>
-                                                <td>{Aeropuertos.Ap_Name}</td>
-                                                <td>
-                                                    <button className="waves-effect waves-light light-blue darken-3 btn tiny" style={{margin:"6px"}} 
-                                                    onClick={()=>this.DeleteAirport(Aeropuertos._id)}>
-                                                        <i className="material-icons ">delete</i>
-                                                    </button>
-                                                </td>
+        {filteredPermisos.map(Permisos => {
+            return (
+                <tr key={Permisos._id}>
+                    <td>{Permisos.P_Numero}</td>
+                    <td>{Permisos.P_UserName}</td>
+                    <td>{Permisos.P_Date}</td>
+                    <td>{<Input name='group1' 
+                            type='checkbox' 
+                            id={"airports"+Permisos._id}
+                            value="Permisos.P_For_Airports"
+                            label='A'
+                            className='filled-in' 
+                            onChange={(e)=>this.handleChange(Permisos._id,"P_For_Airports")}
+                            checked={Permisos.P_For_Airports}
+                        />}
+                    </td>
+                    <td>{<Input name='group2' 
+                            type='checkbox' 
+                            id={"flights"+Permisos._id}
+                            value='base2'  
+                            label='V'
+                            className='filled-in' 
+                            onChange={(e)=>this.handleChange(Permisos._id,"P_For_Flights")}
+                            checked={Permisos.P_For_Flights}
+                        />}
+                    </td>
+                    <td>{<Input name='group3' 
+                            type='checkbox' 
+                            id={"users"+Permisos._id}
+                            label='P'
+                            value='base3'  
+                            className='filled-in' 
+                            onChange={(e)=>this.handleChange(Permisos._id,"P_For_Usernames")}
+                            checked={Permisos.P_For_Usernames}
+                        />}
+                    </td>
+                    <td>{<Input
+                            name="group4"
+                            type="switch"
+                            value="Permisos.status"
+                            onChange={this.handleChange(Permisos._id,"status")}
+                            checked={Permisos.status}
+                            id={"estado"+Permisos._id}
+                        />}
+                    </td>
 
-                                            </tr>
-          )
+                </tr>
+            )
         })
         }
          </tbody>
                         </table>
+                        
+                        <Row>
                         <ul class="pagination center">
                             <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                             <li class="active"><a href="#!">1</a></li>
@@ -125,6 +224,12 @@ class Permisos extends Component{
                             <li class="waves-effect"><a href="#!">5</a></li>
                             <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                         </ul>
+                        </Row>
+                        <Row>
+                        <button onClick={()=>{this.SendChanges()}}  className="btn light-blue darken-3 large right">
+                                            Guardar Cambios
+                        </button>
+                        </Row>
                         </div>
                         </div>
                     </div>
