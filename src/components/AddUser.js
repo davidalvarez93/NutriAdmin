@@ -15,11 +15,11 @@ class Permisos extends Component{
             _id:''
         };
         this.handleChange=this.handleChange.bind(this);
-        this.AddPermiso=this.AddPermiso.bind(this);
+        this.AddUser=this.AddUser.bind(this);
     }
 
 
-    AddPermiso(e){
+    AddUser(e){
         
         fetch('http://localhost:3001/api/journeys/permissions/', {
             method: 'POST',
@@ -59,7 +59,7 @@ class Permisos extends Component{
     render(){
         return(
             <div>
-            <form onSubmit={this.AddPermiso}>
+            <form onSubmit={this.AddUser}>
                                         <div className="row">
                                             <div className="input-field col s10 push-s1 MiInputField">
                                                 <input name="P_Numero" value={this.state.P_Numero} onChange={this.handleChange} type="number" placeholder="Número"/>
