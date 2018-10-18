@@ -1,132 +1,72 @@
 const express = require('express');
 const router = express.Router();
 
-const airportModel = require('../models/airportsModel');
-const flightModel = require('../models/flightsModel');
-const permissionsModel = require('../models/permissionsModel');
+const adminModel = require('../models/AdminModel');
 
-router.get('/Apts/', async (req,res)=>{
-    const TodosLosAeropuertos = await airportModel.find();
-    res.json(TodosLosAeropuertos);
+
+
+
+router.get('/Admins/', async (req,res)=>{
+    const TodosLosAdmins = await adminModel.find();
+    res.json(TodosLosAdmins);
 }
 );
 
-router.get('/Apts/:id', async (req,res)=>{
-    const AeropuertoPorId = await airportModel.findById(req.params.id);
-    res.json(AeropuertoPorId);
+router.get('/Admins/:id', async (req,res)=>{
+    const AdminsPorId = await adminModel.findById(req.params.id);
+    res.json(AdminsPorId);
 });
 
-router.post('/Apts/', async (req,res)=>{
-    const {Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address} = req.body;
-    const NuevoAeropuerto = new airportModel({Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address});
-    await NuevoAeropuerto.save();
-    res.json({status:'Airport saved'});
-});
-
-router.put('/Apts/:id', async (req,res)=>{
-    const {Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address} = req.body;
-    const ActualizarAeropuerto = {Ap_Name, Ap_Country, Ap_State, Ap_City, Ap_Address};
-    await airportModel.findByIdAndUpdate(req.params.id, ActualizarAeropuerto);
-    res.json({status:'Airport updated'});
-});
-
-router.delete('/Apts/:id', async (req,res)=>{
-    await airportModel.findByIdAndRemove(req.params.id);
-    res.json({status:'Airport deleted'});
-});
-
-
-//////////////////////////////////////////////////////////////////////////////////
-
-router.get('/Flgts/', async (req,res)=>{
-    const TodosLosVuelos = await flightModel.find();
-    res.json(TodosLosVuelos);
-}
-);
-
-router.get('/Flgts/:id', async (req,res)=>{
-    const VuelosPorId = await flightModel.findById(req.params.id);
-    res.json(VuelosPorId);
-});
-
-router.post('/Flgts/', async (req,res)=>{
+router.post('/Admins/', async (req,res)=>{
     const {
-        Origen, Fecha_De_Salida, 
-        Hora_De_Salida, Destino, Fecha_De_Llegada, 
-        Hora_De_Llegada, Capacidad, Precio
+        UserName,
+        Password,
+        FirstName,
+        LastName,
+        Phone,
+        Email
     } = req.body;
-    const NuevoVuelo = new flightModel({
-        Origen, Fecha_De_Salida, 
-        Hora_De_Salida, Destino, Fecha_De_Llegada, 
-        Hora_De_Llegada, Capacidad, Precio
+    const NuevoAdmin = new adminModel({
+        UserName,
+        Password,
+        FirstName,
+        LastName,
+        Phone,
+        Email
     });
-    await NuevoVuelo.save();
-    res.json({status:'Flight saved'});
+    await NuevoAdmin.save();
+    res.json({status:'Admin saved'});
 });
 
-router.put('/Flgts/:id', async (req,res)=>{
+router.put('/Admins/:id', async (req,res)=>{
     const {
-        Origen, Fecha_De_Salida, 
-        Hora_De_Salida, Destino, Fecha_De_Llegada, 
-        Hora_De_Llegada, Capacidad, Precio
+        UserName,
+        Password,
+        FirstName,
+        LastName,
+        Phone,
+        Email
     } = req.body;
-    const ActualizarVuelo = {
-        Origen, Fecha_De_Salida, 
-        Hora_De_Salida, Destino, Fecha_De_Llegada, 
-        Hora_De_Llegada, Capacidad, Precio  
+    const ActualizarAdmin = {
+        UserName,
+        Password,
+        FirstName,
+        LastName,
+        Phone,
+        Email  
     };
-    await flightModel.findByIdAndUpdate(req.params.id, ActualizarVuelo);
-    res.json({status:'Flight updated'});
+    await adminModel.findByIdAndUpdate(req.params.id, ActualizarAdmin);
+    res.json({status:'Admin updated'});
 });
 
-router.delete('/Flgts/:id', async (req,res)=>{
-    await flightModel.findByIdAndRemove(req.params.id);
-    res.json({status:'Flight deleted'});
+router.delete('/Admins/:id', async (req,res)=>{
+    await adminModel.findByIdAndRemove(req.params.id);
+    res.json({status:'Admin deleted'});
 });
 
 
 /////////////////////////////////
 
-router.get('/Permissions/', async (req,res)=>{
-    const TodosLosPermisos = await permissionsModel.find();
-    res.json(TodosLosPermisos);
-}
-);
-
-router.get('/Permissions/:id', async (req,res)=>{
-    const PermisosPorId = await permissionsModel.findById(req.params.id);
-    res.json(PermisosPorId);
-});
-
-router.post('/Permissions/', async (req,res)=>{
-    const {
-        P_Numero, P_UserName, 
-        P_Date, P_For_Airports, P_For_Flights, 
-        P_For_Usernames, status
-    } = req.body;
-    const NuevoPermiso = new permissionsModel({
-        P_Numero, P_UserName, 
-        P_Date, P_For_Airports, P_For_Flights, 
-        P_For_Usernames, status
-    });
-    await NuevoPermiso.save();
-    res.json({status:'Permission saved'});
-});
-
-router.put('/Permissions/:id', async (req,res)=>{
-    const {
-        P_Numero, P_UserName, 
-        P_Date, P_For_Airports, P_For_Flights, 
-        P_For_Usernames, status
-    } = req.body;
-    const ActualizarPermiso = {
-        P_Numero, P_UserName, 
-        P_Date, P_For_Airports, P_For_Flights, 
-        P_For_Usernames, status
-    };
-    await permissionsModel.findByIdAndUpdate(req.params.id, ActualizarPermiso);
-    res.json({status:'Permission updated'});
-});
 
 //////////////////////////////
 

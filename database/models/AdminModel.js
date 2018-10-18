@@ -5,9 +5,10 @@ const {Schema} = mongoose;
 let AdminSchema = new Schema({
     UserName:{type:String, requiered:true,},
     Password:{type:String, requiered:true,},
-    //Per_Aero:{type:boolean,},
-    //Per_Vue:{type:boolean,},
-    //Per_Usua:{type:boolean}
+    FirstName:{type:String, required:true,},
+    LastName:{type:String, required:true,},
+    Phone:{type:String, required:true,},
+    Email:{type:String, required:true,},
 });
 
 
